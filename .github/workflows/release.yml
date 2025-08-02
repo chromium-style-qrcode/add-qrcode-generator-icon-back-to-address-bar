@@ -64,6 +64,13 @@ jobs:
           echo "version=$TAG" >> $GITHUB_OUTPUT
           echo "is_prerelease=$([[ $TAG =~ -(alpha|beta|rc) ]] && echo "true" || echo "false")" >> $GITHUB_OUTPUT
 
+      - name: Upload Chrome extension artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: chrome-extension
+          path: .output/add-qrcode-generator-icon-back-to-address-bar-${{ steps.version.outputs.version }}-chrome.zip
+          retention-days: 1
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
@@ -85,3 +92,31 @@ jobs:
             1. Download the appropriate zip file for your browser
             2. Extract the zip file
             3. Load the extension in your browser's developer mode
+
+  publish-chrome-store:
+    needs: build-and-release
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') && !contains(github.ref, 'rc') }}
+
+    steps:
+      - name: Download Chrome extension artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: chrome-extension
+          path: ./
+
+      - name: Extract version from tag
+        id: version_chrome
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          echo "version=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Publish to Chrome Web Store
+        uses: mnao305/chrome-extension-upload@v5.0.0
+        with:
+          file-path: add-qrcode-generator-icon-back-to-address-bar-${{ steps.version_chrome.outputs.version }}-chrome.zip
+          publish: true
+          client-id: ${{ secrets.CLIENT_ID }}
+          extension-id: ${{ secrets.EXTENSION_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          refresh-token: ${{ secrets.REFRESH_TOKEN }}

@@ -145,6 +145,11 @@ src/
 ### 创建一个发布
 
 ```bash
+# 稳定版本（发布到商店）
+pnpm version 1.0.0
+git push origin main
+git push origin 1.0.0
+
 # 预发布版本（仅 GitHub）
 pnpm version prerelease --preid='[alpha｜beta|rc]'
 git push origin main
@@ -153,6 +158,7 @@ git push origin 1.0.0-alpha.0
 
 ### 版本类型
 
+- **稳定版本**（1.0.0）：用于发布到 Chrome 扩展商店
 - **预发布版本**（1.0.0-alpha.0）：仅用于 GitHub，适合测试和开发
 
 ## 🤝 贡献指南

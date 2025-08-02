@@ -145,6 +145,11 @@ This project uses automated releases through GitHub Actions.
 ### Creating a Release
 
 ```bash
+# Stable release (publish to store)
+pnpm version 1.0.0
+git push origin main
+git push origin 1.0.0
+
 # Pre-release (GitHub only)
 pnpm version prerelease --preid='[alpha｜beta|rc]'
 git push origin main
@@ -153,6 +158,7 @@ git push origin 1.0.0-alpha.0
 
 ### Version Types
 
+- **Stable** (1.0.0): Auto-published to Chrome Web Store
 - **Alpha/Beta/RC** (1.0.0-alpha.0): GitHub releases only for testing
 
 ## 🤝 Contributing
