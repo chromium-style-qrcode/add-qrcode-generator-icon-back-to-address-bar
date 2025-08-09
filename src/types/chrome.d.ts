@@ -10,6 +10,14 @@ declare global {
       runtime?: {
         getURL: (path: string) => string
       }
+      commands?: {
+        onCommand: {
+          addListener: (callback: (command: string) => void) => void
+        }
+      }
+      action?: {
+        openPopup: () => void
+      }
     }
   }
 
@@ -22,6 +30,14 @@ declare global {
     }
     runtime?: {
       getURL: (path: string) => string
+    }
+    commands?: {
+      onCommand: {
+        addListener: (callback: (command: string) => void) => void
+      }
+    }
+    action?: {
+      openPopup: () => void
     }
   }
 }

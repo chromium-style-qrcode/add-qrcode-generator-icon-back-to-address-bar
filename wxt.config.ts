@@ -9,6 +9,15 @@ export default defineConfig({
     name: 'Add QR Code Generator Icon Back To Address Bar',
     description:
       'A Extension To Add QR Code Generator Icon Back To Address Bar',
+    commands: {
+      'show-qrcode': {
+        suggested_key: {
+          default: 'Alt+Shift+Q',
+          mac: 'Alt+Shift+Q'
+        },
+        description: 'Show QR code for current page'
+      }
+    },
     web_accessible_resources: [
       {
         resources: ['wasm/*'],

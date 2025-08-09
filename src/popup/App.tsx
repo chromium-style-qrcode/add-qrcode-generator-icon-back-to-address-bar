@@ -93,10 +93,13 @@ function App() {
     <div className={`chromium-bubble flex w-80 flex-col p-0 leading-5`}>
       {/* Title bar with close button - matching Chromium's ShouldShowCloseButton() = true */}
       <div className='chromium-title-bar flex min-h-10 items-center justify-between border-b border-b-transparent px-4 py-3'>
-        <h2 className='chromium-title text-sm font-medium' ref={titleRef}>
-          {i18n.t('title')}
-          {/* IDS_BROWSER_SHARING_QR_CODE_DIALOG_TITLE */}
-        </h2>
+        <div className='flex items-center gap-2'>
+          <h2 className='chromium-title text-sm font-medium' ref={titleRef}>
+            {i18n.t('title')}
+            {/* IDS_BROWSER_SHARING_QR_CODE_DIALOG_TITLE */}
+          </h2>
+          <span className='text-xs text-gray-500 opacity-70'>Alt+Shift+Q</span>
+        </div>
         <button
           type='button'
           className='chromium-close-button flex h-6 w-6 items-center justify-center rounded-full focus:ring-2 focus:outline-none'
