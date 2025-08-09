@@ -1,6 +1,6 @@
 import { useRef, useEffect, forwardRef } from 'react'
 
-import { renderQRCodeToCanvas } from '@/src/hooks/use-qrcode'
+import { ErrorType, renderQRCodeToCanvas } from '@/src/hooks/use-qrcode'
 
 interface QRCodeCanvasProps {
   qrData: Uint8Array | null
@@ -8,10 +8,11 @@ interface QRCodeCanvasProps {
   originalSize: number
   isLoading?: boolean
   error?: string | null
+  errorType?: string | null
 }
 
 export const QRCodeCanvas = forwardRef<HTMLCanvasElement, QRCodeCanvasProps>(
-  ({ qrData, qrSize, originalSize, isLoading, error }, ref) => {
+  ({ qrData, qrSize, originalSize, isLoading, error, errorType }, ref) => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
     useEffect(() => {
@@ -48,7 +49,7 @@ export const QRCodeCanvas = forwardRef<HTMLCanvasElement, QRCodeCanvasProps>(
           }}
         />
         {/* Error overlay matching Chromium style */}
-        {error && !error.includes('too long') && (
+        {error && errorType !== ErrorType.InputTooLong && (
           <div className='absolute inset-0 flex items-center justify-center bg-white/90 p-2.5'>
             <p className='text-center text-xs leading-4 text-[#d93025]'>
               {error}

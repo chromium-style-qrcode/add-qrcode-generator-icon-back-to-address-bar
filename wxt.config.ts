@@ -3,6 +3,7 @@ import { defineConfig } from 'wxt'
 // See https://wxt.dev/api/config.html
 export default defineConfig({
   manifest: {
+    default_locale: 'en',
     permissions: ['activeTab'],
     action: { default_popup: 'popup/index.html' },
     name: 'Add QR Code Generator Icon Back To Address Bar',
@@ -19,7 +20,7 @@ export default defineConfig({
         "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
     }
   },
-  modules: ['@wxt-dev/module-react'],
+  modules: ['@wxt-dev/module-react', '@wxt-dev/i18n/module'],
   entrypointsDir: 'src',
   webExt: { disabled: true },
   vite: () => ({

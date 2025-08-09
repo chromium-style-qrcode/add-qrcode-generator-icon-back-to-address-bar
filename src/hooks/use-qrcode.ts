@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
+import { i18n } from '#i18n'
 
 import { loadWasmModule, type WasmQRGenerator } from '../lib/wasm-loader'
 
@@ -43,6 +44,13 @@ const LOCATOR_SIZE_MODULES = 7
 const QUIET_ZONE_SIZE_PIXELS = MODULE_SIZE_PIXELS * 4
 const MAX_INPUT_LENGTH = 2000
 
+// Error types for better error handling
+export const enum ErrorType {
+  InitFailed = 'INIT_FAILED',
+  InputTooLong = 'INPUT_TOO_LONG',
+  GenerationFailed = 'GENERATION_FAILED'
+}
+
 const moduleColor = '#000000' // Black
 const backgroundColor = '#FFFFFF' // White
 
@@ -75,6 +83,7 @@ const kDinoBody = [
 interface QRCodeState {
   isLoading: boolean
   error: string | null
+  errorType: string | null
   qrData: Uint8Array | null
   qrSize: number
   originalSize: number
@@ -89,11 +98,12 @@ interface QRCodeActions {
 
 export const useQRCode = (): [QRCodeState, QRCodeActions] => {
   const [state, setState] = useState<QRCodeState>({
-    isLoading: false,
+    qrSize: 0,
     error: null,
     qrData: null,
-    qrSize: 0,
-    originalSize: 0
+    errorType: null,
+    originalSize: 0,
+    isLoading: false
   })
   const wasmModuleRef = useRef<WasmQRGenerator>(null)
 
@@ -106,7 +116,8 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
       } catch (error) {
         setState((prev) => ({
           ...prev,
-          error: 'Failed to initialize QR code generator'
+          errorType: ErrorType.InitFailed,
+          error: i18n.t('error_init_failed')
         }))
       }
     }
@@ -118,10 +129,11 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
     if (!inputText.trim()) {
       setState((prev) => ({
         ...prev,
-        qrData: null,
         qrSize: 0,
-        originalSize: 0,
-        error: null
+        error: null,
+        qrData: null,
+        errorType: null,
+        originalSize: 0
       }))
       return
     }
@@ -129,15 +141,21 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
     if (inputText.length > MAX_INPUT_LENGTH) {
       setState((prev) => ({
         ...prev,
-        error: `Input is too long. Please shorten the text to ${MAX_INPUT_LENGTH} characters or less.`,
-        qrData: null,
         qrSize: 0,
-        originalSize: 0
+        qrData: null,
+        originalSize: 0,
+        errorType: ErrorType.InputTooLong,
+        error: i18n.t('error_input_too_long', [MAX_INPUT_LENGTH])
       }))
       return
     }
 
-    setState((prev) => ({ ...prev, isLoading: true, error: null }))
+    setState((prev) => ({
+      ...prev,
+      error: null,
+      errorType: null,
+      isLoading: true
+    }))
 
     try {
       if (!wasmModuleRef.current) return
@@ -156,25 +174,31 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
 
       setState((prev) => ({
         ...prev,
+        error: null,
+        errorType: null,
         isLoading: false,
         qrData: result.data,
         qrSize: result.size,
-        originalSize: result.original_size,
-        error: null
+        originalSize: result.original_size
       }))
     } catch (error) {
-      let errorMessage = 'Could not generate QR code. Please try again.'
+      let [
+        errorType = ErrorType.GenerationFailed,
+        errorMessage = i18n.t('error_generate_failed')
+      ] = [] as unknown as [string]
       if (error && `${error}`.includes('too long')) {
-        errorMessage = `Input is too long. Please shorten the text to ${MAX_INPUT_LENGTH} characters or less.`
+        errorType = ErrorType.InputTooLong
+        errorMessage = i18n.t('error_input_too_long', [MAX_INPUT_LENGTH])
       }
 
       setState((prev) => ({
         ...prev,
-        isLoading: false,
-        error: errorMessage,
-        qrData: null,
+        errorType,
         qrSize: 0,
-        originalSize: 0
+        qrData: null,
+        originalSize: 0,
+        isLoading: false,
+        error: errorMessage
       }))
     }
   }, [])
@@ -243,7 +267,7 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
   )
 
   const clearError = useCallback(() => {
-    setState((prev) => ({ ...prev, error: null }))
+    setState((prev) => ({ ...prev, error: null, errorType: null }))
   }, [])
 
   return [state, { clearError, copyQRCode, generateQRCode, downloadQRCode }]

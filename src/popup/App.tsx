@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react'
 import clsx from 'clsx'
 import { InfoCircledIcon } from '@radix-ui/react-icons'
+import { i18n } from '#i18n'
 
 import {
   Tooltip,
@@ -12,7 +13,7 @@ import { Input } from '@/src/components/ui/input'
 import { Button } from '@/src/components/ui/button'
 import { QRCodeCanvas } from '@/src/components/ui/qrcode-canvas'
 
-import { useQRCode } from '@/src/hooks/use-qrcode'
+import { ErrorType, useQRCode } from '@/src/hooks/use-qrcode'
 
 function App() {
   const [qrState, qrActions] = useQRCode()
@@ -49,13 +50,13 @@ function App() {
     if (qrState.qrData) {
       try {
         await qrActions.copyQRCode()
-        setCopyFeedback('Copied!')
+        setCopyFeedback(i18n.t('copied'))
         setTimeout(() => setCopyFeedback(''), 1500)
       } catch (error) {
         // Fallback to copying text
         try {
           await navigator.clipboard.writeText(inputValue)
-          setCopyFeedback('Copied!')
+          setCopyFeedback(i18n.t('copied'))
           setTimeout(() => setCopyFeedback(''), 1500)
         } catch (textError) {
           console.error('Failed to copy text:', textError)
@@ -81,10 +82,11 @@ function App() {
   }
 
   const [
-    { error, qrData, qrSize, isLoading, originalSize } = qrState,
+    { error, qrData, qrSize, errorType, isLoading, originalSize } = qrState,
+    showInputLengthError = Boolean(error) &&
+      errorType === ErrorType.InputTooLong,
     hasQRData = Boolean(qrData) && qrSize > 0,
-    disabled = !hasQRData || Boolean(isLoading),
-    showInputLengthError = Boolean(error) && error?.includes('too long')
+    disabled = !hasQRData || Boolean(isLoading)
   ] = [] as unknown as []
 
   return (
@@ -92,12 +94,13 @@ function App() {
       {/* Title bar with close button - matching Chromium's ShouldShowCloseButton() = true */}
       <div className='chromium-title-bar flex min-h-10 items-center justify-between border-b border-b-transparent px-4 py-3'>
         <h2 className='chromium-title text-sm font-medium' ref={titleRef}>
-          Scan QR Code{/* IDS_BROWSER_SHARING_QR_CODE_DIALOG_TITLE */}
+          {i18n.t('title')}
+          {/* IDS_BROWSER_SHARING_QR_CODE_DIALOG_TITLE */}
         </h2>
         <button
           type='button'
           className='chromium-close-button flex h-6 w-6 items-center justify-center rounded-full focus:ring-2 focus:outline-none'
-          aria-label='Close'
+          aria-label={i18n.t('aria_close')}
           onClick={() => window.close()}
         >
           <svg
@@ -120,6 +123,7 @@ function App() {
           isLoading={isLoading}
           originalSize={originalSize}
           error={error && !showInputLengthError ? error : null}
+          errorType={errorType}
         />
       </div>
       {/* URL input textfield - matching Chromium's textfield with accessibility */}
@@ -127,8 +131,8 @@ function App() {
         <Input
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          aria-label='URL or text to encode' // GetStringUTF16(IDS_BROWSER_SHARING_QR_CODE_DIALOG_URL_TEXTFIELD_ACCESSIBLE_NAME)
-          placeholder='Enter URL or text'
+          aria-label={i18n.t('aria_input_url_text')} // GetStringUTF16(IDS_BROWSER_SHARING_QR_CODE_DIALOG_URL_TEXTFIELD_ACCESSIBLE_NAME)
+          placeholder={i18n.t('placeholder_input_url_text')}
           maxLength={2000} // kMaxInputLength from Chromium
           className={`chromium-input text-sm transition-all focus:outline-none`}
         />
@@ -160,10 +164,7 @@ function App() {
               </div>
             </TooltipTrigger>
             <TooltipContent side='top' align='start'>
-              <p className='chromium-tooltip-content'>
-                To scan this code, you can use a QR scanner app on your phone,
-                or some camera apps.
-              </p>
+              <p className='chromium-tooltip-content'>{i18n.t('tips')}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
@@ -174,14 +175,14 @@ function App() {
           className='chromium-button min-h-8 min-w-16 rounded-2xl border px-4 py-2 text-center leading-5 disabled:cursor-not-allowed'
           onClick={handleCopy}
         >
-          {copyFeedback || 'Copy'}
+          {copyFeedback || i18n.t('copy')}
         </Button>
         <Button
           disabled={disabled}
           className='chromium-button min-h-8 min-w-16 rounded-2xl border px-4 py-2 text-center leading-5 disabled:cursor-not-allowed'
           onClick={handleDownload}
         >
-          Download
+          {i18n.t('download')}
         </Button>
       </div>
     </div>
