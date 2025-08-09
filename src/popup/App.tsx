@@ -120,13 +120,15 @@ function App() {
       {/* QR code display area - exactly matching Chromium's kQRImageSizePx = 240 */}
       <div className='chromium-qr-container relative flex items-center justify-center self-center overflow-hidden border-2 bg-white'>
         <QRCodeCanvas
-          ref={canvasRef}
-          qrData={qrData}
-          qrSize={qrSize}
-          isLoading={isLoading}
-          originalSize={originalSize}
+          {...{
+            qrData,
+            qrSize,
+            errorType,
+            isLoading,
+            originalSize
+          }}
           error={error && !showInputLengthError ? error : null}
-          errorType={errorType}
+          ref={canvasRef}
         />
       </div>
       {/* URL input textfield - matching Chromium's textfield with accessibility */}
