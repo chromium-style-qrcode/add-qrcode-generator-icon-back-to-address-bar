@@ -78,9 +78,6 @@ pnpm dev
 # Build for production
 pnpm build
 
-# Build for Firefox
-pnpm build:firefox
-
 # Create distribution zip
 pnpm zip
 
@@ -169,7 +166,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 1. Follow the existing code style
 2. Add TypeScript types for new features
-3. Test on both Chrome and Firefox
+3. Test on Chrome
 4. Update documentation as needed
 
 ## 📄 License

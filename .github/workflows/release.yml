@@ -49,13 +49,8 @@ jobs:
       - name: Build extension for Chrome
         run: pnpm build
 
-      - name: Build extension for Firefox
-        run: pnpm build:firefox
-
       - name: Create zip files
-        run: |
-          pnpm zip
-          pnpm zip:firefox
+        run: pnpm zip
 
       - name: Extract version from tag
         id: version
@@ -68,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: chrome-extension
-          path: .output/add-qrcode-generator-icon-back-to-address-bar-${{ steps.version.outputs.version }}-chrome.zip
+          path: .output/add-qrcode-generator-icon-back-to-address-bar-${{ steps.version.outputs.version }}.zip
           retention-days: 1
 
       - name: Create Release
@@ -77,16 +72,12 @@ jobs:
           name: Release ${{ steps.version.outputs.version }}
           draft: false
           prerelease: ${{ steps.version.outputs.is_prerelease }}
-          files: |
-            .output/add-qrcode-generator-icon-back-to-address-bar-${{ steps.version.outputs.version }}-chrome.zip
-            .output/add-qrcode-generator-icon-back-to-address-bar-${{ steps.version.outputs.version }}-firefox.zip
-            .output/add-qrcode-generator-icon-back-to-address-bar-${{ steps.version.outputs.version }}-firefox-sources.zip
+          files: .output/add-qrcode-generator-icon-back-to-address-bar-${{ steps.version.outputs.version }}.zip
           body: |
             ## Release ${{ steps.version.outputs.version }}
 
             ### 📦 Downloads
             - **Chrome Extension**: Download the Chrome zip file below
-            - **Firefox Extension**: Download the Firefox zip file below
 
             ### 📥 Installation
             1. Download the appropriate zip file for your browser
@@ -114,7 +105,7 @@ jobs:
       - name: Publish to Chrome Web Store
         uses: mnao305/chrome-extension-upload@v5.0.0
         with:
-          file-path: add-qrcode-generator-icon-back-to-address-bar-${{ steps.version_chrome.outputs.version }}-chrome.zip
+          file-path: add-qrcode-generator-icon-back-to-address-bar-${{ steps.version_chrome.outputs.version }}.zip
           publish: true
           client-id: ${{ secrets.CLIENT_ID }}
           extension-id: ${{ secrets.EXTENSION_ID }}
