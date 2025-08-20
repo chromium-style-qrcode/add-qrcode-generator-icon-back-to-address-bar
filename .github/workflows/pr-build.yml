@@ -41,8 +41,11 @@ jobs:
           node -v
           pnpm -v
 
-      - name: Build
-        run: pnpm build
+      - name: Read version from package.json
+        id: version
+        run: |
+          ver=$(jq -r '.version' package.json)
+          echo "version=$ver" >> $GITHUB_OUTPUT
 
       - name: Zip
         run: pnpm zip
@@ -50,6 +53,7 @@ jobs:
       - name: Upload artifact (zip)
         uses: actions/upload-artifact@v4
         with:
-          name: extension-zip
-          path: .output/*.zip
+          name: chrome-extension
+          path: .output/add-qrcode-generator-icon-back-to-address-bar-${{ steps.version.outputs.version }}.zip
+          retention-days: 1
           if-no-files-found: error
