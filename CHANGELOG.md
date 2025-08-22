@@ -1,3 +1,25 @@
+## [1.3.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.3.0-alpha.0...1.3.0) (2025-08-22)
+
+## [1.3.0-alpha.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.2.0...1.3.0-alpha.0) (2025-08-22)
+
+### ⚠ BREAKING CHANGES
+
+- **ci:** Artifact filenames no longer include -chrome/-firefox suffix and Firefox package is no longer built/published. Update any scripts or workflows relying on old names or Firefox artifacts.
+
+### Features
+
+- add configuration page with dinosaur icon toggle option ([fb412b2](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/fb412b2e7b646ea4aff594cffde5a7ccf4a7b361))
+
+### Bug Fixes
+
+- **ci:** add missing version step to resolve artifact upload error ([1363bc4](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/1363bc4ff70cb7c6c7ae86c87cd5a9d106618419))
+- **ci:** prevent duplicate scope in dependabot commit messages ([2c7131b](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/2c7131b2f0c8215f21390eea8106ac6f6d63ff93))
+- **ci:** reorder pnpm setup before Node.js cache in workflows ([c5d77f5](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/c5d77f540469359aca056791e1a82ac0dd41d2e6))
+
+### Miscellaneous Chores
+
+- **ci:** remove Firefox build/release; standardize to Chrome-only and unify artifact naming ([daf3d38](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/daf3d38aa822b75c30e6ca875c9dc08796d6e75a))
+
 ## [1.2.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.2.0-alpha.0...1.2.0) (2025-08-09)
 
 ## [1.2.0-alpha.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.1.0...1.2.0-alpha.0) (2025-08-09)
