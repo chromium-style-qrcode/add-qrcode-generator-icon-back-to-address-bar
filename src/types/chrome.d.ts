@@ -7,6 +7,18 @@ declare global {
           callback: (tabs: Array<{ url?: string }>) => void
         ) => void
       }
+      storage?: {
+        sync: {
+          get: (keys: any, callback: (result: any) => void) => void
+          set: (items: any, callback?: () => void) => void
+        }
+        onChanged?: {
+          addListener: (callback: (changes: any, area: string) => void) => void
+          removeListener: (
+            callback: (changes: any, area: string) => void
+          ) => void
+        }
+      }
       runtime?: {
         getURL: (path: string) => string
       }
@@ -27,6 +39,16 @@ declare global {
         queryInfo: { active: boolean; currentWindow: boolean },
         callback: (tabs: Array<{ url?: string }>) => void
       ) => void
+    }
+    storage?: {
+      sync: {
+        get: (keys: any, callback: (result: any) => void) => void
+        set: (items: any, callback?: () => void) => void
+      }
+      onChanged?: {
+        addListener: (callback: (changes: any, area: string) => void) => void
+        removeListener: (callback: (changes: any, area: string) => void) => void
+      }
     }
     runtime?: {
       getURL: (path: string) => string

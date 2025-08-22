@@ -37,7 +37,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate CHANGELOG for latest release range
-        run: pnpm changelog
+        run: pnpm changelog && pnpm format
 
       - name: Commit and push changes
         env:

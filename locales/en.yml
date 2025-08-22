@@ -10,3 +10,14 @@ error_init_failed: Failed to initialize QR code generator
 error_input_too_long: Input is too long. Please shorten the text to $1 characters or less.
 error_generate_failed: Could not generate QR code. Please try again.
 shortcut_hint: Shortcut Alt+Shift+Q
+
+# Configuration page
+options_title: QR Code Generator Configuration
+options_description: Customize your QR code generation preferences.
+options_show_dino: Show Dinosaur Icon
+options_show_dino_description: Display a cute dinosaur icon in the center of generated QR codes.
+options_save: Save Settings
+options_reset: Reset to Defaults
+options_saved: Settings saved successfully!
+options_reset_done: Settings reset to defaults!
+options_footer: Changes will take effect immediately after saving.

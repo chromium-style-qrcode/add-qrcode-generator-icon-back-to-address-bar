@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback } from 'react'
+import { useRef, useMemo, useState, useEffect, useCallback } from 'react'
 import { i18n } from '#i18n'
 
 import { loadWasmModule, type WasmQRGenerator } from '../lib/wasm-loader'
@@ -43,6 +43,9 @@ const DINO_TILE_SIZE_PIXELS = 4
 const LOCATOR_SIZE_MODULES = 7
 const QUIET_ZONE_SIZE_PIXELS = MODULE_SIZE_PIXELS * 4
 const MAX_INPUT_LENGTH = 2000
+
+// Global state for dino display configuration
+let shouldShowDino = true
 
 // Error types for better error handling
 export const enum ErrorType {
@@ -90,10 +93,10 @@ interface QRCodeState {
 }
 
 interface QRCodeActions {
-  generateQRCode: (text: string) => Promise<void>
+  clearError: () => void
   copyQRCode: () => Promise<void>
   downloadQRCode: (filename?: string) => void
-  clearError: () => void
+  generateQRCode: (text: string) => Promise<void>
 }
 
 export const useQRCode = (): [QRCodeState, QRCodeActions] => {
@@ -111,11 +114,13 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
   useEffect(() => {
     const initWasm = async () => {
       try {
+        setState((prev) => ({ ...prev, isLoading: true }))
         wasmModuleRef.current = await loadWasmModule()
-        console.log('WASM module loaded successfully')
+        setState((prev) => ({ ...prev, isLoading: false }))
       } catch (error) {
         setState((prev) => ({
           ...prev,
+          isLoading: false,
           errorType: ErrorType.InitFailed,
           error: i18n.t('error_init_failed')
         }))
@@ -123,6 +128,30 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
     }
 
     initWasm()
+  }, [])
+
+  // Load configuration from storage
+  useEffect(() => {
+    if (typeof chrome !== 'undefined' && chrome.storage) {
+      // Initial load
+      chrome.storage.sync.get({ showDino: true }, (result) => {
+        shouldShowDino = result.showDino
+      })
+
+      // Listen for changes
+      const handleStorageChange = (changes: any, area: string) => {
+        if (area === 'sync' && changes.showDino) {
+          shouldShowDino = changes.showDino.newValue
+        }
+      }
+
+      if (chrome.storage.onChanged) {
+        chrome.storage.onChanged.addListener(handleStorageChange)
+        return () => {
+          chrome.storage!.onChanged?.removeListener(handleStorageChange)
+        }
+      }
+    }
   }, [])
 
   const generateQRCode = useCallback(async (inputText: string) => {
@@ -160,11 +189,15 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
     try {
       if (!wasmModuleRef.current) return
 
+      const centerImage = shouldShowDino
+        ? wasmModuleRef.current.CenterImage.Dino
+        : wasmModuleRef.current.CenterImage.None
+
       const result = wasmModuleRef.current.generate_qr_code_with_options(
         inputText,
         wasmModuleRef.current.ModuleStyle.Circles, // Data modules as circles (kCircles)
         wasmModuleRef.current.LocatorStyle.Rounded, // Rounded locators (kRounded)
-        wasmModuleRef.current.CenterImage.Dino, // Dino center image (kDino)
+        centerImage, // Dynamic center image based on configuration
         wasmModuleRef.current.QuietZone.WillBeAddedByClient // Match Android bridge layer behavior
       )
 
@@ -270,7 +303,12 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
     setState((prev) => ({ ...prev, error: null, errorType: null }))
   }, [])
 
-  return [state, { clearError, copyQRCode, generateQRCode, downloadQRCode }]
+  const actions = useMemo(
+    () => ({ clearError, copyQRCode, generateQRCode, downloadQRCode }),
+    [clearError, copyQRCode, generateQRCode, downloadQRCode]
+  )
+
+  return [state, actions]
 }
 
 // Helper function to check if a module position is part of a locator pattern
@@ -612,7 +650,13 @@ const renderQRCodeAtSize = (
     modulePixelSize
   )
 
-  // Draw center image exactly like Chromium
-  const canvasBounds = { x: 0, y: 0, width: targetSize, height: targetSize }
-  drawCenterImage(ctx, canvasBounds, paintWhite, modulePixelSize)
+  // Draw center image only if enabled
+  if (shouldShowDino) {
+    drawCenterImage(
+      ctx,
+      { x: 0, y: 0, width: targetSize, height: targetSize },
+      paintWhite,
+      modulePixelSize
+    )
+  }
 }

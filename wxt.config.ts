@@ -4,8 +4,12 @@ import { defineConfig } from 'wxt'
 export default defineConfig({
   manifest: {
     default_locale: 'en',
-    permissions: ['activeTab'],
+    permissions: ['activeTab', 'storage'],
     action: { default_popup: 'popup/index.html' },
+    options_ui: {
+      open_in_tab: true,
+      page: 'configuration.html'
+    },
     name: 'Add QR Code Generator Icon Back To Address Bar',
     description:
       'A Extension To Add QR Code Generator Icon Back To Address Bar',
