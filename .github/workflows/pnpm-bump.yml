@@ -3,7 +3,7 @@ name: Scheduled pnpm packageManager bump
 on:
   schedule:
     # 23:59 Asia/Shanghai = 15:59 UTC
-    - cron: '59 15 * * *'
+    - cron: "59 15 * * *"
   workflow_dispatch:
 
 permissions:
