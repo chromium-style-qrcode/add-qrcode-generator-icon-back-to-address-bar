@@ -1,4 +1,16 @@
 import { defineConfig } from 'wxt'
+import { config } from 'dotenv'
+
+// Load environment variables
+config()
+
+// Log warning if using default values
+if (!process.env.VITE_QRCODE_COMMAND_ID) {
+  console.warn('⚠️  VITE_QRCODE_COMMAND_ID not set')
+}
+if (!process.env.VITE_QRCODE_SHORTCUT) {
+  console.warn('⚠️  VITE_QRCODE_SHORTCUT not set')
+}
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
@@ -14,10 +26,10 @@ export default defineConfig({
     description:
       'A Extension To Add QR Code Generator Icon Back To Address Bar',
     commands: {
-      'show-qrcode': {
+      [process.env.VITE_QRCODE_COMMAND_ID!]: {
         suggested_key: {
-          default: 'Alt+Shift+Q',
-          mac: 'Alt+Shift+Q'
+          mac: process.env.VITE_QRCODE_SHORTCUT,
+          default: process.env.VITE_QRCODE_SHORTCUT
         },
         description: 'Show QR code for current page'
       }
