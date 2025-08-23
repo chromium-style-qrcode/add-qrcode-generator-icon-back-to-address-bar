@@ -3,28 +3,24 @@ import { i18n } from '#i18n'
 
 import { Button } from '@/src/components/ui/button'
 
-interface OptionsConfig {
-  showDino: boolean
-}
-
-const DEFAULT_CONFIG: OptionsConfig = {
-  showDino: true
-}
+import { DEFAULT_CONFIG } from '@/src/constant/default'
 
 function Options() {
   const [saveStatus, setSaveStatus] = useState('')
   const [config, setConfig] = useState(DEFAULT_CONFIG)
 
   useEffect(() => {
-    chrome.storage!.sync.get(DEFAULT_CONFIG, (result: OptionsConfig) => {
-      setConfig(result)
-    })
+    chrome.storage!.sync.get(DEFAULT_CONFIG, setConfig)
   }, [])
+
+  const handleCleanUp = () => {
+    setTimeout(() => setSaveStatus(''), 2000)
+  }
 
   const handleSave = () => {
     chrome.storage!.sync.set(config, () => {
       setSaveStatus(i18n.t('options_saved'))
-      setTimeout(() => setSaveStatus(''), 2000)
+      handleCleanUp()
     })
   }
 
@@ -32,7 +28,7 @@ function Options() {
     setConfig(DEFAULT_CONFIG)
     chrome.storage!.sync.set(DEFAULT_CONFIG, () => {
       setSaveStatus(i18n.t('options_reset_done'))
-      setTimeout(() => setSaveStatus(''), 2000)
+      handleCleanUp()
     })
   }
 

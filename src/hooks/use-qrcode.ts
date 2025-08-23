@@ -1,6 +1,7 @@
 import { useRef, useMemo, useState, useEffect, useCallback } from 'react'
 import { i18n } from '#i18n'
 
+import { DEFAULT_CONFIG, DEFAULT_SHOW_DINO } from '../constant/default'
 import { loadWasmModule, type WasmQRGenerator } from '../lib/wasm-loader'
 
 // Polyfill for roundRect if not available
@@ -45,7 +46,7 @@ const QUIET_ZONE_SIZE_PIXELS = MODULE_SIZE_PIXELS * 4
 const MAX_INPUT_LENGTH = 2000
 
 // Global state for dino display configuration
-let shouldShowDino = true
+let shouldShowDino = DEFAULT_SHOW_DINO
 
 // Error types for better error handling
 export const enum ErrorType {
@@ -134,14 +135,17 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
   useEffect(() => {
     if (typeof chrome !== 'undefined' && chrome.storage) {
       // Initial load
-      chrome.storage.sync.get({ showDino: true }, (result) => {
+      chrome.storage.sync.get(DEFAULT_CONFIG, (result) => {
         shouldShowDino = result.showDino
       })
 
       // Listen for changes
-      const handleStorageChange = (changes: any, area: string) => {
+      const handleStorageChange = (
+        changes: Record<string, { newValue: unknown }>,
+        area: string
+      ) => {
         if (area === 'sync' && changes.showDino) {
-          shouldShowDino = changes.showDino.newValue
+          shouldShowDino = changes.showDino.newValue as boolean
         }
       }
 

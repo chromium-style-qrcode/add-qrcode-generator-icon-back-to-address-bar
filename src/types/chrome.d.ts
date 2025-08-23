@@ -42,8 +42,8 @@ declare global {
     }
     storage?: {
       sync: {
-        get: (keys: any, callback: (result: any) => void) => void
         set: (items: any, callback?: () => void) => void
+        get: <T>(keys: T, callback: (result: T) => void) => void
       }
       onChanged?: {
         addListener: (callback: (changes: any, area: string) => void) => void
