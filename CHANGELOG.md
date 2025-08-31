@@ -1,3 +1,17 @@
+## [1.3.1](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.3.0...1.3.1) (2025-08-31)
+
+### Features
+
+- add environment variable support for keyboard shortcuts ([4d1b010](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/4d1b01044339952b79b2bef878e23100bdcd5716))
+
+### Bug Fixes
+
+- **ci:** enhance pnpm-bump workflow with manual trigger and force update option ([0c33867](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/0c33867d8cffa5c29610330d14a3ea3b415aeb95))
+- **ci:** remove labels configuration to resolve permissions error ([2b10c92](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/2b10c92c2b72cbf1dc2de1b7f1b03cbbbb2d5ddb))
+- **ci:** resolve branch conflict in pnpm-bump workflow ([e4d2196](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/e4d2196f41b5db0feccb51dd843bef9552835d78))
+- resolve TypeScript type assertion error in wxt.config.ts ([c5651bc](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/c5651bc44154af7ca918efb3dc1cffdde29f4c7e))
+- update changelog script to regenerate full changelog instead of incremental updates ([6d2000e](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/6d2000ee55cab4f6626de70f259c5f1219465758))
+
 ## [1.3.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.3.0-alpha.0...1.3.0) (2025-08-22)
 
 ## [1.3.0-alpha.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.2.0...1.3.0-alpha.0) (2025-08-22)
