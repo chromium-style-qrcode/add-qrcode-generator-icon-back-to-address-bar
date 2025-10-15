@@ -16,6 +16,7 @@ permissions:
   contents: write
   pull-requests: write
   actions: write
+  workflows: write
 
 env:
   NODE_VERSION: "24.3.0"
