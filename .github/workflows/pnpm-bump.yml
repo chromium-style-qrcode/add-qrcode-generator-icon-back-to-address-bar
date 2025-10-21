@@ -16,7 +16,6 @@ permissions:
   contents: write
   pull-requests: write
   actions: write
-  workflows: write
 
 env:
   NODE_VERSION: "24.3.0"
@@ -87,7 +86,7 @@ jobs:
         if: steps.updatepkg.outputs.updated == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
           base: main
           branch: chore/bump-pnpm-${{ steps.latestpm.outputs.latest }}
           commit-message: "chore(deps): bump pnpm to ${{ steps.latestpm.outputs.latest }}"
