@@ -1,3 +1,15 @@
+## [1.3.2-alpha.3](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.3.2-alpha.2...1.3.2-alpha.3) (2025-12-06)
+
+## [1.3.2-alpha.2](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.3.2-alpha.1...1.3.2-alpha.2) (2025-12-01)
+
+## [1.3.2-alpha.1](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.3.2-alpha.0...1.3.2-alpha.1) (2025-12-01)
+
+## [1.3.2-alpha.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.3.1...1.3.2-alpha.0) (2025-11-21)
+
+### Bug Fixes
+
+- **ci:** use WORKFLOW_TOKEN for workflow file updates ([62e725c](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/62e725c5e7b9fd9f0a991d7d40adbf2cd922e10b))
+
 ## [1.3.1](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.3.0...1.3.1) (2025-08-31)
 
 ### Features
