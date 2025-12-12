@@ -1,3 +1,9 @@
+## [1.4.0-alpha.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.3.2...1.4.0-alpha.0) (2025-12-12)
+
+### Features
+
+- add custom logo upload support in options page ([c109af8](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/c109af8f8236566bdb09988171dc94776b523406))
+
 ## [1.3.2](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.3.2-alpha.3...1.3.2) (2025-12-06)
 
 ## [1.3.2-alpha.3](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.3.2-alpha.2...1.3.2-alpha.3) (2025-12-06)
