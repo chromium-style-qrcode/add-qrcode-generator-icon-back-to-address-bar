@@ -14,8 +14,8 @@ shortcut_hint: 快捷鍵 Alt+Shift+Q
 # 配置頁面
 options_title: 二維碼產生器配置
 options_description: 自訂您的二維碼產生偏好設定
-options_show_dino: 顯示小恐龍圖標
-options_show_dino_description: 在產生的二維碼中心顯示可愛的小恐龍圖標
+options_show_logo: 顯示中心 Logo
+options_show_logo_description: 在產生的二維碼中心顯示 Logo（自訂 Logo 或預設小恐龍）
 options_save: 儲存設定
 options_reset: 重設為預設值
 options_saved: 設定儲存成功！

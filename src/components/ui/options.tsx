@@ -62,20 +62,20 @@ function Options() {
           <div className='flex items-center justify-between'>
             <div className='space-y-1'>
               <label className='text-foreground text-sm font-medium'>
-                {i18n.t('options_show_dino')}
+                {i18n.t('options_show_logo')}
               </label>
               <p className='text-muted-foreground text-sm'>
-                {i18n.t('options_show_dino_description')}
+                {i18n.t('options_show_logo_description')}
               </p>
             </div>
             <div className='flex items-center'>
               <input
-                id='showDino'
+                id='showLogo'
                 type='checkbox'
-                checked={config.showDino}
-                aria-label={i18n.t('options_show_dino')}
+                checked={config.showLogo}
+                aria-label={i18n.t('options_show_logo')}
                 onChange={({ target: { checked } }) =>
-                  setConfig({ ...config, showDino: checked })
+                  setConfig({ ...config, showLogo: checked })
                 }
                 className='border-border text-primary focus:ring-primary h-4 w-4 cursor-pointer rounded focus:ring-2'
               />

@@ -1,7 +1,7 @@
 import { useRef, useMemo, useState, useEffect, useCallback } from 'react'
 import { i18n } from '#i18n'
 
-import { DEFAULT_CONFIG, DEFAULT_SHOW_DINO } from '../constant/default'
+import { DEFAULT_CONFIG, DEFAULT_SHOW_LOGO } from '../constant/default'
 import { loadWasmModule, type WasmQRGenerator } from '../lib/wasm-loader'
 
 // Polyfill for roundRect if not available
@@ -45,8 +45,8 @@ const LOCATOR_SIZE_MODULES = 7
 const QUIET_ZONE_SIZE_PIXELS = MODULE_SIZE_PIXELS * 4
 const MAX_INPUT_LENGTH = 2000
 
-// Global state for dino display configuration
-let shouldShowDino = DEFAULT_SHOW_DINO
+// Global state for logo display configuration
+let shouldShowLogo = DEFAULT_SHOW_LOGO
 // Global state for custom uploaded logo
 let customLogoImage: HTMLImageElement | null = null
 
@@ -153,7 +153,7 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
     if (typeof chrome !== 'undefined' && chrome.storage) {
       // Initial load
       chrome.storage.sync.get(DEFAULT_CONFIG, (result) => {
-        shouldShowDino = result.showDino
+        shouldShowLogo = result.showLogo
         loadCustomLogoFromDataUrl(result.customLogo as string | null)
       })
 
@@ -162,8 +162,8 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
         changes: Record<string, { newValue: unknown }>,
         area: string
       ) => {
-        if (area === 'sync' && changes.showDino) {
-          shouldShowDino = changes.showDino.newValue as boolean
+        if (area === 'sync' && changes.showLogo) {
+          shouldShowLogo = changes.showLogo.newValue as boolean
         }
         if (area === 'sync' && changes.customLogo) {
           loadCustomLogoFromDataUrl(
@@ -216,7 +216,7 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
     try {
       if (!wasmModuleRef.current) return
 
-      const centerImage = shouldShowDino
+      const centerImage = shouldShowLogo
         ? wasmModuleRef.current.CenterImage.Dino
         : wasmModuleRef.current.CenterImage.None
 
@@ -742,6 +742,9 @@ const renderQRCodeAtSize = (
     modulePixelSize
   )
 
+  if (!shouldShowLogo) {
+    return
+  }
   // Draw center image only if enabled
   if (customLogoImage && customLogoImage.complete) {
     drawCustomImage(
@@ -754,12 +757,10 @@ const renderQRCodeAtSize = (
     return
   }
 
-  if (shouldShowDino) {
-    drawCenterImage(
-      ctx,
-      { x: 0, y: 0, width: targetSize, height: targetSize },
-      paintWhite,
-      modulePixelSize
-    )
-  }
+  drawCenterImage(
+    ctx,
+    { x: 0, y: 0, width: targetSize, height: targetSize },
+    paintWhite,
+    modulePixelSize
+  )
 }
