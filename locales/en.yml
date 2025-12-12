@@ -13,11 +13,14 @@ shortcut_hint: Shortcut Alt+Shift+Q
 
 # Configuration page
 options_title: QR Code Generator Configuration
-options_description: Customize your QR code generation preferences.
+options_description: Customize your QR code generation preferences
 options_show_dino: Show Dinosaur Icon
-options_show_dino_description: Display a cute dinosaur icon in the center of generated QR codes.
+options_show_dino_description: Display a cute dinosaur icon in the center of generated QR codes
 options_save: Save Settings
 options_reset: Reset to Defaults
 options_saved: Settings saved successfully!
 options_reset_done: Settings reset to defaults!
-options_footer: Changes will take effect immediately after saving.
+options_footer: Changes will take effect immediately after saving
+options_custom_logo: Custom Logo
+options_custom_logo_remove: Remove
+options_custom_logo_error: Image too large, please try a smaller one

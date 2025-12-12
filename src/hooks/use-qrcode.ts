@@ -47,6 +47,23 @@ const MAX_INPUT_LENGTH = 2000
 
 // Global state for dino display configuration
 let shouldShowDino = DEFAULT_SHOW_DINO
+// Global state for custom uploaded logo
+let customLogoImage: HTMLImageElement | null = null
+
+const loadCustomLogoFromDataUrl = (dataUrl: string | null) => {
+  customLogoImage = null
+  if (!dataUrl) return
+
+  const img = new Image()
+
+  img.onload = () => {
+    customLogoImage = img
+  }
+  img.src = dataUrl
+  img.crossOrigin = 'anonymous'
+  // set immediately so render can check `.complete` as well
+  if (img.complete) customLogoImage = img
+}
 
 // Error types for better error handling
 export const enum ErrorType {
@@ -137,6 +154,7 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
       // Initial load
       chrome.storage.sync.get(DEFAULT_CONFIG, (result) => {
         shouldShowDino = result.showDino
+        loadCustomLogoFromDataUrl(result.customLogo as string | null)
       })
 
       // Listen for changes
@@ -146,6 +164,11 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
       ) => {
         if (area === 'sync' && changes.showDino) {
           shouldShowDino = changes.showDino.newValue as boolean
+        }
+        if (area === 'sync' && changes.customLogo) {
+          loadCustomLogoFromDataUrl(
+            changes.customLogo.newValue as string | null
+          )
         }
       }
 
@@ -545,6 +568,71 @@ const drawCenterImage = (
   )
 }
 
+// Draw a custom uploaded image centered with the same sizing rules as the dino.
+const drawCustomImage = (
+  ctx: CanvasRenderingContext2D,
+  canvasBounds: { x: number; y: number; width: number; height: number },
+  img: HTMLImageElement,
+  paintBackground: { color: string },
+  modulePixelSize: number
+) => {
+  const chromiumModuleSize = 10
+  const scaleFactor = modulePixelSize / chromiumModuleSize
+  const pixelsPerDinoTile = Math.round(DINO_TILE_SIZE_PIXELS * scaleFactor)
+  const widthPx = pixelsPerDinoTile * kDinoWidth
+  const heightPx = pixelsPerDinoTile * kDinoHeight
+  const borderPx = Math.round(2 * scaleFactor)
+
+  if (
+    canvasBounds.width / 2 < widthPx + borderPx ||
+    canvasBounds.height / 2 < heightPx + borderPx
+  ) {
+    console.warn('Custom logo too large for canvas bounds')
+    return
+  }
+
+  let destX = (canvasBounds.width - widthPx) / 2
+  let destY = (canvasBounds.height - heightPx) / 2
+
+  const backgroundLeft =
+    Math.floor((destX - borderPx) / modulePixelSize) * modulePixelSize
+  const backgroundTop =
+    Math.floor((destY - borderPx) / modulePixelSize) * modulePixelSize
+  const backgroundRight =
+    Math.floor(
+      (destX + widthPx + borderPx + modulePixelSize - 1) / modulePixelSize
+    ) * modulePixelSize
+  const backgroundBottom =
+    Math.floor(
+      (destY + heightPx + borderPx + modulePixelSize - 1) / modulePixelSize
+    ) * modulePixelSize
+
+  ctx.fillStyle = paintBackground.color
+  ctx.fillRect(
+    backgroundLeft,
+    backgroundTop,
+    backgroundRight - backgroundLeft,
+    backgroundBottom - backgroundTop
+  )
+
+  const deltaX = Math.round(
+    (backgroundLeft + backgroundRight) / 2 - (destX + widthPx / 2)
+  )
+  const deltaY = Math.round(
+    (backgroundTop + backgroundBottom) / 2 - (destY + heightPx / 2)
+  )
+  destX += deltaX
+  destY += deltaY
+
+  const prevImageSmoothing = ctx.imageSmoothingEnabled
+  ctx.imageSmoothingEnabled = true
+  try {
+    ctx.drawImage(img, destX, destY, widthPx, heightPx)
+  } finally {
+    ctx.imageSmoothingEnabled = prevImageSmoothing
+  }
+}
+
 const renderQRCodeToCanvasWithSize = (
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
@@ -655,6 +743,17 @@ const renderQRCodeAtSize = (
   )
 
   // Draw center image only if enabled
+  if (customLogoImage && customLogoImage.complete) {
+    drawCustomImage(
+      ctx,
+      { x: 0, y: 0, width: targetSize, height: targetSize },
+      customLogoImage,
+      paintWhite,
+      modulePixelSize
+    )
+    return
+  }
+
   if (shouldShowDino) {
     drawCenterImage(
       ctx,

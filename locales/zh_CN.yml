@@ -13,11 +13,14 @@ shortcut_hint: 快捷键 Alt+Shift+Q
 
 # 配置页面
 options_title: 二维码生成器配置
-options_description: 自定义您的二维码生成首选项。
+options_description: 自定义您的二维码生成首选项
 options_show_dino: 显示小恐龙图标
-options_show_dino_description: 在生成的二维码中心显示可爱的小恐龙图标。
+options_show_dino_description: 在生成的二维码中心显示可爱的小恐龙图标
 options_save: 保存设置
 options_reset: 重置为默认
 options_saved: 设置保存成功！
 options_reset_done: 设置已重置为默认值！
-options_footer: 保存后更改将立即生效。
+options_footer: 保存后更改将立即生效
+options_custom_logo: 自定义 Logo
+options_custom_logo_remove: 移除
+options_custom_logo_error: 图片过大，请选择较小的图片
