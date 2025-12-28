@@ -1,3 +1,5 @@
+import { dirname, resolve } from 'path'
+import { mkdirSync, existsSync, copyFileSync } from 'fs'
 import { defineConfig } from 'wxt'
 import { config } from 'dotenv'
 
@@ -59,5 +61,22 @@ export default defineConfig({
   zip: {
     artifactTemplate: '{{name}}-{{packageVersion}}.zip',
     sourcesTemplate: '{{name}}-{{packageVersion}}-sources.zip'
+  },
+  hooks: {
+    'build:publicAssets': (wxt) => {
+      // Copy wasm file from node_modules to public/wasm
+      const wasmSrc = resolve(
+        'node_modules/@chromium-style-qrcode/generator/dist/qrcode_bg.wasm'
+      )
+      const wasmDest = resolve(wxt.config.outDir, 'wasm/qrcode_bg.wasm')
+
+      const destDir = dirname(wasmDest)
+      if (!existsSync(destDir)) {
+        mkdirSync(destDir, { recursive: true })
+      }
+
+      copyFileSync(wasmSrc, wasmDest)
+      console.log('✓ Copied qrcode_bg.wasm to output directory')
+    }
   }
 })

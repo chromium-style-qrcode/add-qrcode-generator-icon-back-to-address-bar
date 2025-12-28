@@ -1,5 +1,12 @@
 // Static WASM loader that directly imports the generated module
-import * as wasmModule from '../../public/wasm/generator.js'
+import {
+  QuietZone,
+  initialize,
+  CenterImage,
+  ModuleStyle,
+  LocatorStyle,
+  generateQRCode
+} from '@chromium-style-qrcode/generator'
 
 export interface QRCodeResult {
   data: Uint8Array
@@ -49,29 +56,29 @@ export const loadWasmModuleStatic = async (): Promise<WasmQRGenerator> => {
       return path.startsWith('/') ? path : `/${path}`
     }
 
-    const wasmPath = getResourceUrl('wasm/generator_bg.wasm')
+    const wasmPath = getResourceUrl('wasm/qrcode_bg.wasm')
 
     // Initialize the WASM module
-    await wasmModule.default(wasmPath)
+    await initialize(wasmPath)
 
     console.log('WASM module loaded successfully via static import')
 
     cachedModule = {
       QuietZone: {
-        WillBeAddedByClient: wasmModule.QuietZone.WillBeAddedByClient,
-        Included: wasmModule.QuietZone.Included
+        WillBeAddedByClient: QuietZone.WillBeAddedByClient,
+        Included: QuietZone.Included
       },
       CenterImage: {
-        Dino: wasmModule.CenterImage.Dino,
-        None: wasmModule.CenterImage.NoCenterImage
+        Dino: CenterImage.Dino,
+        None: CenterImage.NoCenterImage
       },
       ModuleStyle: {
-        Circles: wasmModule.ModuleStyle.Circles,
-        Squares: wasmModule.ModuleStyle.Squares
+        Circles: ModuleStyle.Circles,
+        Squares: ModuleStyle.Squares
       },
       LocatorStyle: {
-        Rounded: wasmModule.LocatorStyle.Rounded,
-        Square: wasmModule.LocatorStyle.Square
+        Rounded: LocatorStyle.Rounded,
+        Square: LocatorStyle.Square
       },
       generate_qr_code_with_options: (
         text: string,
@@ -80,13 +87,12 @@ export const loadWasmModuleStatic = async (): Promise<WasmQRGenerator> => {
         centerImage: number,
         quietZone: number
       ) => {
-        const result = wasmModule.generate_qr_code_with_options(
-          text,
+        const result = generateQRCode(text, {
           moduleStyle,
           locatorStyle,
           centerImage,
           quietZone
-        )
+        })
 
         return {
           data: result.data,
