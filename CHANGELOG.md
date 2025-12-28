@@ -1,3 +1,5 @@
+## [1.4.1-alpha.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.4.0...1.4.1-alpha.0) (2025-12-28)
+
 ## [1.4.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.4.0-alpha.1...1.4.0) (2025-12-12)
 
 ## [1.4.0-alpha.1](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.4.0-alpha.0...1.4.0-alpha.1) (2025-12-12)
