@@ -1,3 +1,9 @@
+## [1.5.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.4.1...1.5.0) (2026-01-24)
+
+### Features
+
+- add uninstall feedback form URL to collect user feedback ([464594f](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/464594fe93bd60328516bed25e6b07be74d159fc))
+
 ## [1.4.1](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.4.1-alpha.0...1.4.1) (2025-12-28)
 
 ## [1.4.1-alpha.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.4.0...1.4.1-alpha.0) (2025-12-28)
