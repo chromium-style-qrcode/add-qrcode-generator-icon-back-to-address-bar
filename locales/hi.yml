@@ -1,0 +1,26 @@
+copy: कॉपी करें
+copied: कॉपी हो गया!
+download: डाउनलोड
+title: QR कोड स्कैन करें
+tips: इस कोड को स्कैन करने के लिए, आप अपने फ़ोन पर QR स्कैनर ऐप या कुछ कैमरा ऐप्स का उपयोग कर सकते हैं। या जल्दी खोलने के लिए Alt+Shift+Q शॉर्टकट का उपयोग करें।
+aria_close: बंद करें
+aria_input_url_text: एनकोड करने के लिए URL या टेक्स्ट
+placeholder_input_url_text: URL या टेक्स्ट दर्ज करें
+error_init_failed: QR कोड जनरेटर को शुरू करने में विफल
+error_input_too_long: इनपुट बहुत लंबा है। कृपया टेक्स्ट को $1 अक्षरों या उससे कम तक छोटा करें।
+error_generate_failed: QR कोड जनरेट नहीं हो सका। कृपया पुनः प्रयास करें।
+shortcut_hint: शॉर्टकट Alt+Shift+Q
+
+# कॉन्फ़िगरेशन पेज
+options_title: QR कोड जनरेटर कॉन्फ़िगरेशन
+options_description: अपनी QR कोड जनरेशन प्राथमिकताएँ अनुकूलित करें
+options_show_logo: केंद्र लोगो दिखाएँ
+options_show_logo_description: जनरेट किए गए QR कोड के केंद्र में एक लोगो प्रदर्शित करें (कस्टम लोगो या डिफ़ॉल्ट डायनासोर)
+options_save: सेटिंग्स सहेजें
+options_reset: डिफ़ॉल्ट पर रीसेट करें
+options_saved: सेटिंग्स सफलतापूर्वक सहेजी गईं!
+options_reset_done: सेटिंग्स डिफ़ॉल्ट पर रीसेट हो गईं!
+options_footer: सहेजने के बाद परिवर्तन तुरंत प्रभावी होंगे
+options_custom_logo: कस्टम लोगो
+options_custom_logo_remove: हटाएँ
+options_custom_logo_error: छवि बहुत बड़ी है, कृपया छोटी छवि का प्रयास करें

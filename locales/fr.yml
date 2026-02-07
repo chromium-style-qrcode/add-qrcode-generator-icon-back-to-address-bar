@@ -1,0 +1,26 @@
+copy: Copier
+copied: Copié !
+download: Télécharger
+title: Scanner le QR Code
+tips: Pour scanner ce code, vous pouvez utiliser une application de scanner QR sur votre téléphone ou certaines applications d'appareil photo. Ou utilisez le raccourci Alt+Shift+Q pour l'ouvrir rapidement.
+aria_close: Fermer
+aria_input_url_text: URL ou texte à encoder
+placeholder_input_url_text: Entrez l'URL ou le texte
+error_init_failed: Échec de l'initialisation du générateur de QR code
+error_input_too_long: Le texte est trop long. Veuillez le réduire à $1 caractères ou moins.
+error_generate_failed: Impossible de générer le QR code. Veuillez réessayer.
+shortcut_hint: Raccourci Alt+Shift+Q
+
+# Page de configuration
+options_title: Configuration du Générateur de QR Code
+options_description: Personnalisez vos préférences de génération de QR code
+options_show_logo: Afficher le Logo Central
+options_show_logo_description: Afficher un logo au centre des QR codes générés (logo personnalisé ou dinosaure par défaut)
+options_save: Enregistrer les Paramètres
+options_reset: Réinitialiser par Défaut
+options_saved: Paramètres enregistrés avec succès !
+options_reset_done: Paramètres réinitialisés par défaut !
+options_footer: Les modifications prendront effet immédiatement après l'enregistrement
+options_custom_logo: Logo Personnalisé
+options_custom_logo_remove: Supprimer
+options_custom_logo_error: Image trop volumineuse, veuillez en essayer une plus petite

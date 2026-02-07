@@ -1,0 +1,26 @@
+copy: コピー
+copied: コピーしました！
+download: ダウンロード
+title: QRコードをスキャン
+tips: このQRコードをスキャンするには、スマートフォンのQRコードスキャナーアプリや一部のカメラアプリをご利用ください。または Alt+Shift+Q ショートカットで素早く開けます。
+aria_close: 閉じる
+aria_input_url_text: エンコードするURLまたはテキスト
+placeholder_input_url_text: URLまたはテキストを入力
+error_init_failed: QRコードジェネレーターの初期化に失敗しました
+error_input_too_long: 入力が長すぎます。$1文字以内に短縮してください。
+error_generate_failed: QRコードを生成できませんでした。もう一度お試しください。
+shortcut_hint: ショートカット Alt+Shift+Q
+
+# 設定ページ
+options_title: QRコードジェネレーター設定
+options_description: QRコード生成の設定をカスタマイズ
+options_show_logo: 中央ロゴを表示
+options_show_logo_description: 生成されたQRコードの中央にロゴを表示します（カスタムロゴまたはデフォルトの恐竜）
+options_save: 設定を保存
+options_reset: デフォルトにリセット
+options_saved: 設定が保存されました！
+options_reset_done: 設定がデフォルトにリセットされました！
+options_footer: 保存後、変更はすぐに反映されます
+options_custom_logo: カスタムロゴ
+options_custom_logo_remove: 削除
+options_custom_logo_error: 画像が大きすぎます。より小さい画像をお試しください
