@@ -1,3 +1,9 @@
+## [1.6.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.5.0...1.6.0) (2026-02-07)
+
+### Features
+
+- **i18n:** add Japanese, Portuguese, French, and Hindi translations ([dc830cb](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/commit/dc830cbac1fb3872461911a284fe7e067e663530))
+
 ## [1.5.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.4.1...1.5.0) (2026-01-24)
 
 ### Features
