@@ -67,7 +67,7 @@ You can install the extension directly from the [Chrome Web Store](https://chrom
 ### Prerequisites
 
 - Node.js ≥ 22.18.0
-- pnpm ≥ 10.28.2
+- pnpm ≥ 10.29.1
 
 ### Development Commands
 
