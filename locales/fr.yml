@@ -9,7 +9,6 @@ placeholder_input_url_text: Entrez l'URL ou le texte
 error_init_failed: Échec de l'initialisation du générateur de QR code
 error_input_too_long: Le texte est trop long. Veuillez le réduire à $1 caractères ou moins.
 error_generate_failed: Impossible de générer le QR code. Veuillez réessayer.
-shortcut_hint: Raccourci Alt+Shift+Q
 
 # Page de configuration
 options_title: Configuration du Générateur de QR Code

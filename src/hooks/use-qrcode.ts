@@ -111,7 +111,6 @@ interface QRCodeState {
 }
 
 interface QRCodeActions {
-  clearError: () => void
   copyQRCode: () => Promise<void>
   downloadQRCode: (filename?: string) => void
   generateQRCode: (text: string) => Promise<void>
@@ -326,13 +325,9 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
     [state.qrData, state.qrSize, state.originalSize]
   )
 
-  const clearError = useCallback(() => {
-    setState((prev) => ({ ...prev, error: null, errorType: null }))
-  }, [])
-
   const actions = useMemo(
-    () => ({ clearError, copyQRCode, generateQRCode, downloadQRCode }),
-    [clearError, copyQRCode, generateQRCode, downloadQRCode]
+    () => ({ copyQRCode, generateQRCode, downloadQRCode }),
+    [copyQRCode, generateQRCode, downloadQRCode]
   )
 
   return [state, actions]

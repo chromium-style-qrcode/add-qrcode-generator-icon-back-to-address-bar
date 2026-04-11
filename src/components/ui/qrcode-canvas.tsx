@@ -2,12 +2,11 @@ import { useRef, useEffect, forwardRef } from 'react'
 
 import { ErrorType, renderQRCodeToCanvas } from '@/src/hooks/use-qrcode'
 
-interface QRCodeCanvasProps
-  extends Partial<{
-    isLoading: boolean
-    error: string | null
-    errorType: string | null
-  }> {
+interface QRCodeCanvasProps extends Partial<{
+  isLoading: boolean
+  error: string | null
+  errorType: string | null
+}> {
   qrSize: number
   originalSize: number
   qrData: Uint8Array | null

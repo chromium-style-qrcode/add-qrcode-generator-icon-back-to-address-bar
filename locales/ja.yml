@@ -9,7 +9,6 @@ placeholder_input_url_text: URLまたはテキストを入力
 error_init_failed: QRコードジェネレーターの初期化に失敗しました
 error_input_too_long: 入力が長すぎます。$1文字以内に短縮してください。
 error_generate_failed: QRコードを生成できませんでした。もう一度お試しください。
-shortcut_hint: ショートカット Alt+Shift+Q
 
 # 設定ページ
 options_title: QRコードジェネレーター設定

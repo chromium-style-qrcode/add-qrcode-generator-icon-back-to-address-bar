@@ -9,7 +9,6 @@ placeholder_input_url_text: URL या टेक्स्ट दर्ज कर
 error_init_failed: QR कोड जनरेटर को शुरू करने में विफल
 error_input_too_long: इनपुट बहुत लंबा है। कृपया टेक्स्ट को $1 अक्षरों या उससे कम तक छोटा करें।
 error_generate_failed: QR कोड जनरेट नहीं हो सका। कृपया पुनः प्रयास करें।
-shortcut_hint: शॉर्टकट Alt+Shift+Q
 
 # कॉन्फ़िगरेशन पेज
 options_title: QR कोड जनरेटर कॉन्फ़िगरेशन
