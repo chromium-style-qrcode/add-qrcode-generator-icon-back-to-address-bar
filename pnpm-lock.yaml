@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@chromium-style-qrcode/generator':
-        specifier: 1.0.1
-        version: 1.0.1
+        specifier: 1.0.2
+        version: 1.0.2
       '@radix-ui/react-icons':
         specifier: ^1.3.2
         version: 1.3.2(react@19.2.5)
@@ -129,8 +129,8 @@ packages:
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
 
-  '@chromium-style-qrcode/generator@1.0.1':
-    resolution: {integrity: sha512-1ioTWHe30UwB0G2CQhEAayivA0a80d+npTAnY7JfNbg/Z34KGUNsu2kYO4yr+CkqJ6GTFVQzuA8PK3kcwFOIZQ==}
+  '@chromium-style-qrcode/generator@1.0.2':
+    resolution: {integrity: sha512-EEGxZknuJQJj2ZpX0gwI00z8/g20KykU67dDjz/4RxDR3txUE6Bi6zjbXRWnxTYGDe5RxeeypfT2YONzFaJM6g==}
     engines: {node: '>=22.14.0', pnpm: '>=10.25.0'}
 
   '@conventional-changelog/git-client@1.0.1':
@@ -2663,7 +2663,7 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
-  '@chromium-style-qrcode/generator@1.0.1': {}
+  '@chromium-style-qrcode/generator@1.0.2': {}
 
   '@conventional-changelog/git-client@1.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.0)':
     dependencies:
