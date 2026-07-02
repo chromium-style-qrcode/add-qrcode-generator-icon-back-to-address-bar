@@ -47,7 +47,7 @@ importers:
         version: 4.3.1
       '@thedutchcoder/postcss-rem-to-px':
         specifier: ^0.0.2
-        version: 0.0.2(postcss@8.5.15)
+        version: 0.0.2(postcss@8.5.16)
       '@types/node':
         specifier: ^26.1.0
         version: 26.1.0
@@ -67,8 +67,8 @@ importers:
         specifier: ^17.4.2
         version: 17.4.2
       postcss:
-        specifier: ^8.5.15
-        version: 8.5.15
+        specifier: ^8.5.16
+        version: 8.5.16
       prettier:
         specifier: ^3.9.4
         version: 3.9.4
@@ -1893,11 +1893,6 @@ packages:
     resolution: {integrity: sha512-yTW+2okrElHiH4fsiz/+/zc0EDo9BDDoC3iKk8dpv1GeRc9nUWzUZHx6TofMWErchhUQR8hY9/Eu1Uja9x1nqA==}
     engines: {node: '>=20.17'}
 
-  nanoid@3.3.12:
-    resolution: {integrity: sha512-ZB9RH/39qpq5Vu6Y+NmUaFhQR6pp+M2Xt76XBnEwDaGcVAqhlvxrl3B2bKS5D3NH3QR76v3aSrKaF/Kiy7lEtQ==}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-
   nanoid@3.3.15:
     resolution: {integrity: sha512-y7Wygv/7mEOvxTuEQDB8StXdMRBWf1kR/tlhAzBRUFkB2jfcLOAxO/SHmOO2zgz1pVgK29/kyupn059/bCHdjA==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -3193,9 +3188,9 @@ snapshots:
       postcss: 8.5.15
       tailwindcss: 4.3.1
 
-  '@thedutchcoder/postcss-rem-to-px@0.0.2(postcss@8.5.15)':
+  '@thedutchcoder/postcss-rem-to-px@0.0.2(postcss@8.5.16)':
     dependencies:
-      postcss: 8.5.15
+      postcss: 8.5.16
 
   '@tybys/wasm-util@0.10.3':
     dependencies:
@@ -4090,8 +4085,6 @@ snapshots:
 
   nano-spawn@2.1.0: {}
 
-  nanoid@3.3.12: {}
-
   nanoid@3.3.15: {}
 
   nanospinner@1.2.2:
@@ -4231,7 +4224,7 @@ snapshots:
 
   postcss@8.5.15:
     dependencies:
-      nanoid: 3.3.12
+      nanoid: 3.3.15
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
