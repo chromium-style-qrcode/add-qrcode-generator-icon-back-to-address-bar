@@ -47,7 +47,7 @@ importers:
         version: 4.3.3
       '@thedutchcoder/postcss-rem-to-px':
         specifier: ^0.0.2
-        version: 0.0.2(postcss@8.5.21)
+        version: 0.0.2(postcss@8.5.24)
       '@types/node':
         specifier: ^26.1.1
         version: 26.1.1
@@ -67,8 +67,8 @@ importers:
         specifier: ^17.4.2
         version: 17.4.2
       postcss:
-        specifier: ^8.5.21
-        version: 8.5.21
+        specifier: ^8.5.24
+        version: 8.5.24
       prettier:
         specifier: ^3.9.5
         version: 3.9.5
@@ -1817,10 +1817,6 @@ packages:
   pkg-types@2.3.1:
     resolution: {integrity: sha512-y+ichcgc2LrADuhLNAx8DFjVfgz91pRxfZdI3UDhxHvcVEZsenLO+7XaU5vOp0u/7V/wZ+plyuQxtrDlZJ+yeg==}
 
-  postcss@8.5.21:
-    resolution: {integrity: sha512-v4sDNP3fdNiWMfabO7OwOQdOX8TiQSztKyT1Wj0w+j7LDallJThJRBBBmzVGyYj0crMh7jlV4zepPkiNu9UwDQ==}
-    engines: {node: ^10 || ^12 || >=14}
-
   postcss@8.5.24:
     resolution: {integrity: sha512-8RyVklq0owXUTa4xlpzu4l9AaVKIdQvAcOHZWaMh98HgySsUtxRVf/chRe3dsSLqb6i40BzGRzEUddRaI+9TSw==}
     engines: {node: ^10 || ^12 || >=14}
@@ -2779,12 +2775,12 @@ snapshots:
       '@alloc/quick-lru': 5.2.0
       '@tailwindcss/node': 4.3.3
       '@tailwindcss/oxide': 4.3.3
-      postcss: 8.5.21
+      postcss: 8.5.24
       tailwindcss: 4.3.3
 
-  '@thedutchcoder/postcss-rem-to-px@0.0.2(postcss@8.5.21)':
+  '@thedutchcoder/postcss-rem-to-px@0.0.2(postcss@8.5.24)':
     dependencies:
-      postcss: 8.5.21
+      postcss: 8.5.24
 
   '@tybys/wasm-util@0.10.3':
     dependencies:
@@ -3559,12 +3555,6 @@ snapshots:
       confbox: 0.2.4
       exsolve: 1.1.1
       pathe: 2.0.3
-
-  postcss@8.5.21:
-    dependencies:
-      nanoid: 3.3.16
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
 
   postcss@8.5.24:
     dependencies:
