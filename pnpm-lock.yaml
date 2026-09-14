@@ -22,7 +22,7 @@ importers:
         version: 1.2.16(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@wxt-dev/i18n':
         specifier: ^0.2.7
-        version: 0.2.7(wxt@0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)))
+        version: 0.2.7(wxt@0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0)))
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -49,8 +49,8 @@ importers:
         specifier: ^0.0.2
         version: 0.0.2(postcss@8.5.26)
       '@types/node':
-        specifier: ^26.2.0
-        version: 26.2.0
+        specifier: ^26.5.1
+        version: 26.5.1
       '@types/react':
         specifier: ^19.2.18
         version: 19.2.18
@@ -59,7 +59,7 @@ importers:
         version: 19.2.5(@types/react@19.2.18)
       '@wxt-dev/module-react':
         specifier: ^1.2.2
-        version: 1.2.2(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0))(wxt@0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)))
+        version: 1.2.2(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0))(wxt@0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0)))
       conventional-changelog-cli:
         specifier: ^5.0.0
         version: 5.0.0(conventional-commits-filter@5.0.0)
@@ -83,7 +83,7 @@ importers:
         version: 7.0.2
       wxt:
         specifier: ^0.21.4
-        version: 0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0))
+        version: 0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0))
 
 packages:
 
@@ -344,8 +344,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@napi-rs/wasm-runtime@1.2.3':
-    resolution: {integrity: sha512-UMduMbqO5s5zF2NkNacMT/yK5Y5QiKvWr2+50bzIIxFDwVJ2h49b+oyjaCGPhJxd2/gC2x39EHv/gHVuu36x2Q==}
+  '@napi-rs/wasm-runtime@1.2.4':
+    resolution: {integrity: sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=23.5.0}
     peerDependencies:
       '@emnapi/core': ^1.7.1 || ^2.0.0-alpha.4
@@ -918,8 +918,8 @@ packages:
   '@types/har-format@1.2.16':
     resolution: {integrity: sha512-fluxdy7ryD3MV6h8pTfTYpy/xQzCFC7m89nOH9y94cNqJ1mDIDPut7MnRHI3F6qRmh/cT2fUjG1MLdCNb4hE9A==}
 
-  '@types/node@26.2.0':
-    resolution: {integrity: sha512-5IviulTZeRNp2vAJ514cc/HUlY5nZ9fCbq9DMyC52BrhFZACo3nI0R7qBxhQmo/d27NFe96ur/b7Wwxklda+kg==}
+  '@types/node@26.5.1':
+    resolution: {integrity: sha512-CzNm2FezW4VR/LjG6yUdiEgLE/rAQ9Slj5gCu/C2VrdcW7I0ahNZ8DRbHT7zOZ6r3ONgd/bsQIeSaoDGrd1C6g==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -1650,6 +1650,11 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  nanoid@3.3.19:
+    resolution: {integrity: sha512-Y2tUNy4ouw6tq5oDSKeQYGOyhkUBhNOcGV/02KC+6kd9eDGqdZd++mjMiIDilrBYvjEnCYvVtsuHCuP+okSfug==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
@@ -1706,6 +1711,10 @@ packages:
 
   postcss@8.5.26:
     resolution: {integrity: sha512-u82N74LFzG8ca+dD8puPnplTXoGH4fTPpVGuIbt36G3qvNlkvfD0lEAZSxaly3KX8TS/L1A1gsCEmvKmBcVbkQ==}
+    engines: {node: ^10 || ^12 || >=14}
+
+  postcss@8.5.28:
+    resolution: {integrity: sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==}
     engines: {node: ^10 || ^12 || >=14}
 
   prettier-plugin-tailwindcss@0.8.1:
@@ -1922,8 +1931,8 @@ packages:
   uhyphen@0.2.0:
     resolution: {integrity: sha512-qz3o9CHXmJJPGBdqzab7qAYuW8kQGKNEuoHFYrBwV6hWIMcpAmxDLXojcHfFr9US1Pe6zUswEIJIbLI610fuqA==}
 
-  undici-types@8.3.0:
-    resolution: {integrity: sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ==}
+  undici-types@8.9.0:
+    resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
 
   unicorn-magic@0.1.0:
     resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
@@ -2244,7 +2253,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@napi-rs/wasm-runtime@1.2.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)':
+  '@napi-rs/wasm-runtime@1.2.4(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)':
     dependencies:
       '@emnapi/core': 1.11.1
       '@emnapi/runtime': 1.11.1
@@ -2467,7 +2476,7 @@ snapshots:
     dependencies:
       '@emnapi/core': 1.11.1
       '@emnapi/runtime': 1.11.1
-      '@napi-rs/wasm-runtime': 1.2.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
+      '@napi-rs/wasm-runtime': 1.2.4(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
     optional: true
 
   '@rolldown/binding-win32-arm64-msvc@1.1.5':
@@ -2648,9 +2657,9 @@ snapshots:
 
   '@types/har-format@1.2.16': {}
 
-  '@types/node@26.2.0':
+  '@types/node@26.5.1':
     dependencies:
-      undici-types: 8.3.0
+      undici-types: 8.9.0
 
   '@types/normalize-package-data@2.4.4': {}
 
@@ -2724,10 +2733,10 @@ snapshots:
   '@typescript/typescript-win32-x64@7.0.2':
     optional: true
 
-  '@vitejs/plugin-react@6.0.1(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0))':
+  '@vitejs/plugin-react@6.0.1(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0))':
     dependencies:
       '@rolldown/pluginutils': 1.0.0-rc.7
-      vite: 8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)
+      vite: 8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0)
 
   '@webext-core/fake-browser@2.0.1':
     dependencies:
@@ -2745,20 +2754,20 @@ snapshots:
       '@types/filesystem': 0.0.36
       '@types/har-format': 1.2.16
 
-  '@wxt-dev/i18n@0.2.7(wxt@0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)))':
+  '@wxt-dev/i18n@0.2.7(wxt@0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0)))':
     dependencies:
       '@wxt-dev/browser': 0.2.6
       chokidar: 5.0.0
       confbox: 0.2.4
       tinyglobby: 0.2.17
     optionalDependencies:
-      wxt: 0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0))
+      wxt: 0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0))
 
-  '@wxt-dev/module-react@1.2.2(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0))(wxt@0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)))':
+  '@wxt-dev/module-react@1.2.2(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0))(wxt@0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0)))':
     dependencies:
-      '@vitejs/plugin-react': 6.0.1(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0))
-      vite: 8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)
-      wxt: 0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0))
+      '@vitejs/plugin-react': 6.0.1(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0))
+      vite: 8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0)
+      wxt: 0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0))
     transitivePeerDependencies:
       - '@rolldown/plugin-babel'
       - babel-plugin-react-compiler
@@ -3260,6 +3269,8 @@ snapshots:
 
   nanoid@3.3.18: {}
 
+  nanoid@3.3.19: {}
+
   neo-async@2.6.2: {}
 
   normalize-package-data@6.0.2:
@@ -3319,6 +3330,12 @@ snapshots:
   postcss@8.5.26:
     dependencies:
       nanoid: 3.3.18
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
+  postcss@8.5.28:
+    dependencies:
+      nanoid: 3.3.19
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
@@ -3521,11 +3538,11 @@ snapshots:
 
   uhyphen@0.2.0: {}
 
-  undici-types@8.3.0: {}
+  undici-types@8.9.0: {}
 
   unicorn-magic@0.1.0: {}
 
-  unimport@6.4.0(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)):
+  unimport@6.4.0(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0)):
     dependencies:
       acorn: 8.18.0
       escape-string-regexp: 5.0.0
@@ -3539,7 +3556,7 @@ snapshots:
       scule: 1.3.0
       strip-literal: 4.0.0
       tinyglobby: 0.2.17
-      unplugin: 3.3.0(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0))
+      unplugin: 3.3.0(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0))
       unplugin-utils: 0.3.2
     optionalDependencies:
       rolldown: 1.1.5
@@ -3558,7 +3575,7 @@ snapshots:
       pathe: 2.0.3
       picomatch: 4.0.5
 
-  unplugin@3.3.0(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)):
+  unplugin@3.3.0(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0)):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       picomatch: 4.0.5
@@ -3567,22 +3584,22 @@ snapshots:
       esbuild: 0.27.7
       rolldown: 1.1.5
       rollup: 4.59.0
-      vite: 8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)
+      vite: 8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0)
 
   validate-npm-package-license@3.0.4:
     dependencies:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
 
-  vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0):
+  vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
-      postcss: 8.5.26
+      postcss: 8.5.28
       rolldown: 1.1.5
       tinyglobby: 0.2.17
     optionalDependencies:
-      '@types/node': 26.2.0
+      '@types/node': 26.5.1
       esbuild: 0.27.7
       fsevents: 2.3.3
       jiti: 2.7.0
@@ -3597,7 +3614,7 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
 
-  wxt@0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)):
+  wxt@0.21.4(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(typescript@7.0.2)(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0)):
     dependencies:
       '@1natsu/wait-element': 4.2.0
       '@aklinker1/rollup-plugin-visualizer': 5.12.0(rollup@4.59.0)
@@ -3627,8 +3644,8 @@ snapshots:
       tiny-open: 1.3.0
       tinyexec: 1.3.0
       tinyglobby: 0.2.17
-      unimport: 6.4.0(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(vite@8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0))
-      vite: 8.1.2(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)
+      unimport: 6.4.0(esbuild@0.27.7)(rolldown@1.1.5)(rollup@4.59.0)(vite@8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0))
+      vite: 8.1.2(@types/node@26.5.1)(esbuild@0.27.7)(jiti@2.7.0)
     optionalDependencies:
       typescript: 7.0.2
     transitivePeerDependencies:
