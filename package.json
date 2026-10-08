@@ -35,7 +35,7 @@
     "@wxt-dev/module-react": "^1.2.2",
     "conventional-changelog-cli": "^5.0.0",
     "dotenv": "^18.0.5",
-    "postcss": "^8.5.28",
+    "postcss": "^8.5.29",
     "prettier": "^3.9.9",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
