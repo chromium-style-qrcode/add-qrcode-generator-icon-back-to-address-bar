@@ -1,4 +1,8 @@
-import { renderQRCodeToCanvas } from '../hooks/use-qrcode'
+import JSZip from 'jszip'
+import {
+  generateBatchQRCodes,
+  renderQRCodeToCanvas
+} from '../hooks/use-qrcode'
 import type { LocatorStyleOption, ModuleStyleOption } from '../constant/default'
 
 // Geometry mirrors the canvas renderer (see use-qrcode.ts) so the SVG matches
@@ -20,15 +24,16 @@ const isLocatorModule = (x: number, y: number, size: number): boolean =>
   (x < LOCATOR && y >= size - LOCATOR)
 
 /**
- * Build an SVG document for the QR matrix. The center logo is intentionally
- * omitted (it is a raster overlay in the PNG path); the SVG remains a fully
- * scalable vector of modules + finder patterns.
+ * Build an SVG document for the QR matrix. When `logoDataUrl` is provided it
+ * is embedded in the center (the logo is raster, so it is inlined as a PNG
+ * data URL rather than vectorized).
  */
 export const qrToSvg = (
   qrData: Uint8Array,
   size: number,
   originalSize: number,
-  opts: SvgOptions
+  opts: SvgOptions,
+  logoDataUrl?: string | null
 ): string => {
   const hasQuietZone = size > originalSize
   const quietModules = hasQuietZone ? (size - originalSize) / 2 : 0
@@ -96,6 +101,24 @@ export const qrToSvg = (
   locator(originalSize - LOCATOR, 0)
   locator(0, originalSize - LOCATOR)
 
+  // Center logo overlay (drawn last so it sits above the data modules).
+  if (logoDataUrl) {
+    const logoW = 80
+    const logoH = 88
+    const destX = (total - logoW) / 2
+    const destY = (total - logoH) / 2
+    const bgLeft = Math.floor((destX - 2) / MODULE) * MODULE
+    const bgTop = Math.floor((destY - 2) / MODULE) * MODULE
+    const bgRight = Math.ceil((destX + logoW + 2) / MODULE) * MODULE
+    const bgBottom = Math.ceil((destY + logoH + 2) / MODULE) * MODULE
+    parts.push(
+      `<rect x="${bgLeft}" y="${bgTop}" width="${bgRight - bgLeft}" height="${bgBottom - bgTop}" fill="${opts.background}"/>`
+    )
+    parts.push(
+      `<image href="${logoDataUrl}" x="${destX}" y="${destY}" width="${logoW}" height="${logoH}" preserveAspectRatio="none"/>`
+    )
+  }
+
   parts.push('</svg>')
   return parts.join('')
 }
@@ -105,9 +128,10 @@ export const downloadSvg = (
   qrData: Uint8Array,
   qrSize: number,
   originalSize: number,
-  opts: SvgOptions
+  opts: SvgOptions,
+  logoDataUrl?: string | null
 ): void => {
-  const svg = qrToSvg(qrData, qrSize, originalSize, opts)
+  const svg = qrToSvg(qrData, qrSize, originalSize, opts, logoDataUrl)
   const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' })
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
@@ -153,4 +177,34 @@ export const downloadScaledPng = (
   link.href = canvas.toDataURL('image/png')
   link.download = filename
   link.click()
+}
+
+/**
+ * Generate PNGs for a list of texts and bundle them into a single zip. This is
+ * a Pro feature (batch generation).
+ */
+export const exportBatchPng = async (texts: string[]): Promise<void> => {
+  const zip = new JSZip()
+  let index = 0
+
+  await generateBatchQRCodes(texts, async (data, size, originalSize) => {
+    const canvas = document.createElement('canvas')
+    renderQRCodeToCanvas(canvas, data, size, originalSize)
+    const base64 = canvas.toDataURL('image/png').split(',')[1]
+    if (!base64) return
+    index += 1
+    zip.file(`qrcode_${String(index).padStart(3, '0')}.png`, base64, {
+      base64: true
+    })
+  })
+
+  if (index === 0) return
+
+  const blob = await zip.generateAsync({ type: 'blob' })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = 'qrcodes.zip'
+  link.click()
+  URL.revokeObjectURL(url)
 }

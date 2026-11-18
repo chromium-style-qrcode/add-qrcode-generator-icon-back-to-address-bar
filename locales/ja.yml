@@ -80,3 +80,26 @@ license_deactivate: 無効化
 license_deactivated: ライセンスを無効化しました
 license_pro_active: Proはこのデバイスで有効です
 license_thank_you: プロジェクトを支援いただきありがとうございます！
+
+tab_batch: 一括
+content_type_label: コンテンツタイプ
+content_type_text: テキスト / URL
+content_type_vcard: 連絡先 (vCard)
+content_type_event: カレンダーイベント
+vcard_first_name: 名
+vcard_last_name: 姓
+vcard_phone: 電話番号
+vcard_email: メール
+vcard_organization: 組織
+event_title: イベント名
+event_start: 開始 (YYYYMMDD または YYYYMMDDTHHMMSS)
+event_end: 終了 (YYYYMMDD または YYYYMMDDTHHMMSS)
+event_location: 場所
+batch_placeholder: 1行に1項目
+batch_count: $1 項目
+batch_generate: ZIPを生成
+batch_done: 完了！
+batch_pro: ZIP Pro
+history_search: 履歴を検索
+history_search_placeholder: 検索…
+history_no_results: 一致する項目がありません

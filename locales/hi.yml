@@ -80,3 +80,26 @@ license_deactivate: निष्क्रिय करें
 license_deactivated: लाइसेंस निष्क्रिय हो गया
 license_pro_active: Pro इस डिवाइस पर सक्रिय है
 license_thank_you: इस प्रोजेक्ट का समर्थन करने के लिए धन्यवाद!
+
+tab_batch: बैच
+content_type_label: सामग्री प्रकार
+content_type_text: टेक्स्ट / URL
+content_type_vcard: संपर्क (vCard)
+content_type_event: कैलेंडर ईवेंट
+vcard_first_name: पहला नाम
+vcard_last_name: उपनाम
+vcard_phone: फ़ोन
+vcard_email: ईमेल
+vcard_organization: संगठन
+event_title: ईवेंट शीर्षक
+event_start: शुरुआत (YYYYMMDD या YYYYMMDDTHHMMSS)
+event_end: समाप्ति (YYYYMMDD या YYYYMMDDTHHMMSS)
+event_location: स्थान
+batch_placeholder: प्रति पंक्ति एक आइटम
+batch_count: $1 आइटम
+batch_generate: ZIP बनाएँ
+batch_done: हो गया!
+batch_pro: ZIP Pro
+history_search: इतिहास खोजें
+history_search_placeholder: खोजें…
+history_no_results: कोई मिलता-जुलता आइटम नहीं

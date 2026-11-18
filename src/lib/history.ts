@@ -1,10 +1,18 @@
+import type { Plan } from './types'
+
 const HISTORY_KEY = 'history'
-const HISTORY_LIMIT = 50
+
+/** Free tier keeps the last 50 items; Pro keeps up to 500. */
+const FREE_LIMIT = 50
+const PRO_LIMIT = 500
 
 export interface HistoryItem {
   text: string
   ts: number
 }
+
+export const getHistoryLimit = (plan: Plan): number =>
+  plan === 'pro' ? PRO_LIMIT : FREE_LIMIT
 
 export const loadHistory = async (): Promise<HistoryItem[]> => {
   if (typeof chrome === 'undefined' || !chrome.storage?.local) return []
@@ -13,7 +21,10 @@ export const loadHistory = async (): Promise<HistoryItem[]> => {
   return Array.isArray(items) ? items : []
 }
 
-export const addHistoryItem = async (text: string): Promise<void> => {
+export const addHistoryItem = async (
+  text: string,
+  plan: Plan = 'free'
+): Promise<void> => {
   if (!text.trim() || typeof chrome === 'undefined' || !chrome.storage?.local) {
     return
   }
@@ -22,7 +33,7 @@ export const addHistoryItem = async (text: string): Promise<void> => {
   const next = [
     { text, ts: Date.now() },
     ...current.filter((item) => item.text !== text)
-  ].slice(0, HISTORY_LIMIT)
+  ].slice(0, getHistoryLimit(plan))
 
   await chrome.storage.local.set({ [HISTORY_KEY]: next })
 }

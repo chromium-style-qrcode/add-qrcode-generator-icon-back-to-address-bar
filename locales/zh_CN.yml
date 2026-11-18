@@ -80,3 +80,26 @@ license_deactivate: 停用
 license_deactivated: 授权已停用
 license_pro_active: Pro 已在此设备激活
 license_thank_you: 感谢支持本项目！
+
+tab_batch: 批量
+content_type_label: 内容类型
+content_type_text: 文本 / 网址
+content_type_vcard: 联系人 (vCard)
+content_type_event: 日历事件
+vcard_first_name: 名
+vcard_last_name: 姓
+vcard_phone: 电话
+vcard_email: 邮箱
+vcard_organization: 组织
+event_title: 事件标题
+event_start: 开始 (YYYYMMDD 或 YYYYMMDDTHHMMSS)
+event_end: 结束 (YYYYMMDD 或 YYYYMMDDTHHMMSS)
+event_location: 地点
+batch_placeholder: 每行一个条目
+batch_count: $1 个条目
+batch_generate: 生成 ZIP
+batch_done: 完成！
+batch_pro: ZIP Pro
+history_search: 搜索历史
+history_search_placeholder: 搜索…
+history_no_results: 无匹配条目

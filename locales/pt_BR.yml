@@ -80,3 +80,26 @@ license_deactivate: Desativar
 license_deactivated: Licença desativada
 license_pro_active: Pro está ativo neste dispositivo
 license_thank_you: Obrigado por apoiar este projeto!
+
+tab_batch: Em lote
+content_type_label: Tipo de conteúdo
+content_type_text: Texto / URL
+content_type_vcard: Contato (vCard)
+content_type_event: Evento de calendário
+vcard_first_name: Nome
+vcard_last_name: Sobrenome
+vcard_phone: Telefone
+vcard_email: E-mail
+vcard_organization: Organização
+event_title: Título do evento
+event_start: Início (AAAAMMDD ou AAAAMMDDTHHMMSS)
+event_end: Fim (AAAAMMDD ou AAAAMMDDTHHMMSS)
+event_location: Local
+batch_placeholder: Um item por linha
+batch_count: $1 itens
+batch_generate: Gerar ZIP
+batch_done: Pronto!
+batch_pro: ZIP Pro
+history_search: Pesquisar histórico
+history_search_placeholder: Pesquisar…
+history_no_results: Nenhum item correspondente

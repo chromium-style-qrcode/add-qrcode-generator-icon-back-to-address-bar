@@ -80,3 +80,26 @@ license_deactivate: 停用
 license_deactivated: 授權已停用
 license_pro_active: Pro 已在此裝置啟用
 license_thank_you: 感謝支持本專案！
+
+tab_batch: 批次
+content_type_label: 內容類型
+content_type_text: 文字 / 網址
+content_type_vcard: 聯絡人 (vCard)
+content_type_event: 日曆事件
+vcard_first_name: 名
+vcard_last_name: 姓
+vcard_phone: 電話
+vcard_email: 信箱
+vcard_organization: 組織
+event_title: 事件標題
+event_start: 開始 (YYYYMMDD 或 YYYYMMDDTHHMMSS)
+event_end: 結束 (YYYYMMDD 或 YYYYMMDDTHHMMSS)
+event_location: 地點
+batch_placeholder: 每行一個項目
+batch_count: $1 個項目
+batch_generate: 產生 ZIP
+batch_done: 完成！
+batch_pro: ZIP Pro
+history_search: 搜尋歷史
+history_search_placeholder: 搜尋…
+history_no_results: 無相符項目

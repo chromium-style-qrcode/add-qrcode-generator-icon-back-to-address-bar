@@ -684,6 +684,67 @@ export const renderQRCodeToCanvas = (
   renderQRCodeToCanvasWithSize(canvas, ctx, ...args)
 }
 
+/**
+ * Generate QR matrices for a batch of texts, reusing the current WASM module
+ * and the currently-loaded style configuration (module shape, locator style,
+ * center logo). The render callback receives each matrix so the caller can
+ * rasterize it (PNG/SVG) however it wants.
+ */
+export const generateBatchQRCodes = async (
+  texts: string[],
+  render: (data: Uint8Array, size: number, originalSize: number) => Promise<void>
+): Promise<void> => {
+  const wasm = await loadWasmModule()
+  for (const text of texts) {
+    const trimmed = text.trim()
+    if (!trimmed) continue
+
+    const centerImage = shouldShowLogo
+      ? wasm.CenterImage.Dino
+      : wasm.CenterImage.None
+    const moduleStyle =
+      currentModuleStyle === 'squares'
+        ? wasm.ModuleStyle.Squares
+        : wasm.ModuleStyle.Circles
+    const locatorStyle =
+      currentLocatorStyle === 'square'
+        ? wasm.LocatorStyle.Square
+        : wasm.LocatorStyle.Rounded
+
+    const result = wasm.generate_qr_code_with_options(
+      trimmed,
+      moduleStyle,
+      locatorStyle,
+      centerImage,
+      wasm.QuietZone.WillBeAddedByClient
+    )
+    if (!result || !result.data) continue
+    await render(result.data, result.size, result.original_size)
+  }
+}
+
+/**
+ * Produce a PNG data URL of the center logo (the custom logo if set, else the
+ * Chromium dinosaur) so the SVG export can embed it. Returns null when no logo
+ * should be shown.
+ */
+export const getCenterLogoDataUrl = (): string | null => {
+  if (customLogoImage && customLogoImage.complete) {
+    return customLogoImage.src
+  }
+  if (!shouldShowLogo) return null
+
+  const w = kDinoWidth * DINO_TILE_SIZE_PIXELS
+  const h = kDinoHeight * DINO_TILE_SIZE_PIXELS
+  const canvas = document.createElement('canvas')
+  canvas.width = w
+  canvas.height = h
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return null
+  drawDinoPixelByPixel(ctx, 0, 0, w, h)
+  return canvas.toDataURL('image/png')
+}
+
 // Render QR code at specific size (for download/copy) - exactly matching Chromium
 const renderQRCodeAtSize = (
   ctx: CanvasRenderingContext2D,
