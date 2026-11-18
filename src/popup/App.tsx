@@ -135,7 +135,7 @@ function App() {
   const showQR = mode === 'text'
 
   return (
-    <div className={`chromium-bubble flex w-80 min-h-[470px] flex-col p-0 leading-5`}>
+    <div className={`chromium-bubble flex w-80 h-[506px] flex-col p-0 leading-5`}>
       {/* Title bar with close button - matching Chromium's ShouldShowCloseButton() = true */}
       <div className='chromium-title-bar flex min-h-10 items-center justify-between border-b border-b-transparent px-4 py-3'>
         <div className='flex items-center gap-2'>
@@ -185,7 +185,7 @@ function App() {
         ))}
       </div>
 
-      <div className='flex flex-1 flex-col'>
+      <div className='flex flex-1 min-h-0 flex-col'>
         {showQR ? (
           <>
             {/* QR code display area - exactly matching Chromium's kQRImageSizePx = 240 */}
@@ -215,8 +215,8 @@ function App() {
           </div>
           {/* Hint when the current page URL cannot be read (e.g. chrome://) */}
           {urlUnavailable && (
-            <div className='chromium-input-container -mt-1 mb-2'>
-              <p className='text-xs leading-4 text-[var(--chromium-secondary-text)]'>
+            <div className='chromium-input-container mt-1 mb-4'>
+              <p className='line-clamp-2 text-xs leading-4 text-[var(--chromium-secondary-text)]'>
                 {i18n.t('page_url_unavailable')}
               </p>
             </div>
@@ -238,7 +238,7 @@ function App() {
           <div
             className={clsx(
               'chromium-button-container flex items-center gap-2',
-              showInputLengthError ? 'with-error' : 'without-error'
+              showInputLengthError || urlUnavailable ? 'with-error' : 'without-error'
             )}
           >
             {/* Tooltip icon - matching Chromium's TooltipIcon */}
