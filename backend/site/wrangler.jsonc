@@ -1,0 +1,18 @@
+{
+  "name": "add-qr-code-generator-icon-back-to-address-bar-site",
+  "main": "worker.ts",
+  "compatibility_date": "2026-11-18",
+  "assets": {
+    "directory": "../../landing"
+  },
+  "routes": [
+    {
+      "pattern": "add-qr-code-generator-icon-back-to-address-bar.dev",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.add-qr-code-generator-icon-back-to-address-bar.dev",
+      "custom_domain": true
+    }
+  ]
+}

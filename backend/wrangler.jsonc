@@ -1,16 +1,16 @@
 {
   "name": "qrcode-pro-license",
   "main": "worker.ts",
-  "compatibility_date": "2026-11-19",
+  "compatibility_date": "2026-11-18",
   "kv_namespaces": [
     {
       "binding": "LICENSE_KV",
-      "id": "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+      "id": "914c515ec28b4645ab717dc387f04b18"
     }
   ],
   "routes": [
     {
-      "pattern": "license.example.com",
+      "pattern": "license.add-qr-code-generator-icon-back-to-address-bar.dev",
       "custom_domain": true
     }
   ]

@@ -20,8 +20,28 @@
 
 export interface Env {
   LICENSE_KV: KVNamespace
-  WAFFO_WEBHOOK_PUBLIC_KEY?: string
 }
+
+// Waffo's platform-level webhook signing keys (shared across all merchants).
+const TEST_PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxnmRY6yMMA3lVqmAU6ZG
+b1sjL/+r/z6E+ZjkXaDAKiqOhk9rpazni0bNsGXwmftTPk9jy2wn+j6JHODD/WH/
+SCnSfvKkLIjy4Hk7BuCgB174C0ydan7J+KgXLkOwgCAxxB68t2tezldwo74ZpXgn
+F49opzMvQ9prEwIAWOE+kV9iK6gx/AckSMtHIHpUesoPDkldpmFHlB2qpf1vsFTZ
+5kD6DmGl+2GIVK01aChy2lk8pLv0yUMu18v44sLkO5M44TkGPJD9qG09wrvVG2wp
+OTVCn1n5pP8P+HRLcgzbUB3OlZVfdFurn6EZwtyL4ZD9kdkQ4EZE/9inKcp3c1h4
+xwIDAQAB
+-----END PUBLIC KEY-----`
+
+const PROD_PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAz+xApdTIb4ua+DgZKQ54
+iBsD82ybyhGCLRETONW4Jgbb3A8DUM1LqBk6r/CmTOCHqLalTQHNigvP3R5zkDNX
+iRJz6gA4MJ/+8K0+mnEE2RISQzN+Qu65TNd6svb+INm/kMaftY4uIXr6y6kchtTJ
+dwnQhcKdAL2v7h7IFnkVelQsKxDdb2PqX8xX/qwd01iXvMcpCCaXovUwZsxH2QN5
+ZKBTseJivbhUeyJCco4fdUyxOMHe2ybCVhyvim2uxAl1nkvL5L8RCWMCAV55LLo0
+9OhmLahz/DYNu13YLVP6dvIT09ZFBYU6Owj1NxdinTynlJCFS9VYwBgmftosSE1U
+dwIDAQAB
+-----END PUBLIC KEY-----`
 
 // Key alphabet without easily-confused glyphs (0/O, 1/I/L).
 const KEY_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'
@@ -106,11 +126,10 @@ async function pemToKey(pem: string): Promise<CryptoKey | null> {
 
 async function verifyWaffoSignature(
   request: Request,
-  rawBody: string,
-  env: Env
+  rawBody: string
 ): Promise<boolean> {
   const header = request.headers.get('X-Waffo-Signature')
-  if (!header || !env.WAFFO_WEBHOOK_PUBLIC_KEY) return false
+  if (!header) return false
 
   let t = ''
   let v1 = ''
@@ -130,17 +149,21 @@ async function verifyWaffoSignature(
     return false
   }
 
-  const key = await pemToKey(env.WAFFO_WEBHOOK_PUBLIC_KEY)
-  if (!key) return false
-
   const signedInput = `${t}.${rawBody}`
   const signatureBytes = Uint8Array.from(atob(v1), (c) => c.charCodeAt(0))
-  return crypto.subtle.verify(
-    'RSASSA-PKCS1-v1_5',
-    key,
-    signatureBytes,
-    new TextEncoder().encode(signedInput)
-  )
+
+  for (const pem of [TEST_PUBLIC_KEY, PROD_PUBLIC_KEY]) {
+    const key = await pemToKey(pem)
+    if (!key) continue
+    const ok = await crypto.subtle.verify(
+      'RSASSA-PKCS1-v1_5',
+      key,
+      signatureBytes,
+      new TextEncoder().encode(signedInput)
+    )
+    if (ok) return true
+  }
+  return false
 }
 
 function normalizeEmail(email: string): string {
@@ -158,7 +181,7 @@ export default {
     // ------------------------------------------------------------------ webhook
     if (url.pathname === '/webhook/waffo' && request.method === 'POST') {
       const rawBody = await request.text()
-      if (!(await verifyWaffoSignature(request, rawBody, env))) {
+      if (!(await verifyWaffoSignature(request, rawBody))) {
         return json({ error: 'invalid signature' }, 401)
       }
       const event = JSON.parse(rawBody) as {
