@@ -1,7 +1,12 @@
 import { useRef, useMemo, useState, useEffect, useCallback } from 'react'
 import { i18n } from '#i18n'
 
-import { DEFAULT_CONFIG, DEFAULT_SHOW_LOGO } from '../constant/default'
+import {
+  DEFAULT_CONFIG,
+  DEFAULT_SHOW_LOGO,
+  type ModuleStyleOption,
+  type LocatorStyleOption
+} from '../constant/default'
 import { loadWasmModule, type WasmQRGenerator } from '../lib/wasm-loader'
 
 // Polyfill for roundRect if not available
@@ -20,19 +25,19 @@ if (
     if (typeof radius === 'number') {
       radii = [radius, radius, radius, radius]
     } else if (radius.length === 1) {
-      radii = [radius[0], radius[0], radius[0], radius[0]]
+      radii = [radius[0]!, radius[0]!, radius[0]!, radius[0]!]
     } else if (radius.length === 2) {
-      radii = [radius[0], radius[1], radius[0], radius[1]]
+      radii = [radius[0]!, radius[1]!, radius[0]!, radius[1]!]
     } else {
       radii = radius as number[]
     }
 
     this.beginPath()
-    this.moveTo(x + radii[0], y)
-    this.arcTo(x + width, y, x + width, y + height, radii[1])
-    this.arcTo(x + width, y + height, x, y + height, radii[2])
-    this.arcTo(x, y + height, x, y, radii[3])
-    this.arcTo(x, y, x + width, y, radii[0])
+    this.moveTo(x + radii[0]!, y)
+    this.arcTo(x + width, y, x + width, y + height, radii[1]!)
+    this.arcTo(x + width, y + height, x, y + height, radii[2]!)
+    this.arcTo(x, y + height, x, y, radii[3]!)
+    this.arcTo(x, y, x + width, y, radii[0]!)
     this.closePath()
     return this
   }
@@ -49,6 +54,9 @@ const MAX_INPUT_LENGTH = 2000
 let shouldShowLogo = DEFAULT_SHOW_LOGO
 // Global state for custom uploaded logo
 let customLogoImage: HTMLImageElement | null = null
+// Global state for QR style configuration
+let currentModuleStyle: ModuleStyleOption = DEFAULT_CONFIG.moduleStyle
+let currentLocatorStyle: LocatorStyleOption = DEFAULT_CONFIG.locatorStyle
 
 const loadCustomLogoFromDataUrl = (dataUrl: string | null) => {
   customLogoImage = null
@@ -72,8 +80,8 @@ export const enum ErrorType {
   GenerationFailed = 'GENERATION_FAILED'
 }
 
-const moduleColor = '#000000' // Black
-const backgroundColor = '#FFFFFF' // White
+let moduleColor = DEFAULT_CONFIG.foregroundColor // Black
+let backgroundColor = DEFAULT_CONFIG.backgroundColor // White
 
 // --- Dino Data (EXACT copy from Chromium dino_image.h) ---
 const kDinoWidth = 20
@@ -150,24 +158,26 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
   // Load configuration from storage
   useEffect(() => {
     if (typeof chrome !== 'undefined' && chrome.storage) {
+      const applyConfig = (result: typeof DEFAULT_CONFIG) => {
+        shouldShowLogo = result.showLogo ?? DEFAULT_SHOW_LOGO
+        currentModuleStyle = result.moduleStyle ?? DEFAULT_CONFIG.moduleStyle
+        currentLocatorStyle = result.locatorStyle ?? DEFAULT_CONFIG.locatorStyle
+        moduleColor = result.foregroundColor || DEFAULT_CONFIG.foregroundColor
+        backgroundColor = result.backgroundColor || DEFAULT_CONFIG.backgroundColor
+        loadCustomLogoFromDataUrl(result.customLogo)
+      }
+
       // Initial load
-      chrome.storage.sync.get(DEFAULT_CONFIG, (result) => {
-        shouldShowLogo = result.showLogo
-        loadCustomLogoFromDataUrl(result.customLogo as string | null)
-      })
+      chrome.storage.sync.get(DEFAULT_CONFIG, applyConfig)
 
       // Listen for changes
       const handleStorageChange = (
-        changes: Record<string, { newValue: unknown }>,
+        _changes: Record<string, { newValue: unknown }>,
         area: string
       ) => {
-        if (area === 'sync' && changes.showLogo) {
-          shouldShowLogo = changes.showLogo.newValue as boolean
-        }
-        if (area === 'sync' && changes.customLogo) {
-          loadCustomLogoFromDataUrl(
-            changes.customLogo.newValue as string | null
-          )
+        if (area === 'sync') {
+          // Re-read full config so unchanged keys keep their current values
+          chrome.storage.sync.get(DEFAULT_CONFIG, applyConfig)
         }
       }
 
@@ -219,10 +229,20 @@ export const useQRCode = (): [QRCodeState, QRCodeActions] => {
         ? wasmModuleRef.current.CenterImage.Dino
         : wasmModuleRef.current.CenterImage.None
 
+      const moduleStyle =
+        currentModuleStyle === 'squares'
+          ? wasmModuleRef.current.ModuleStyle.Squares
+          : wasmModuleRef.current.ModuleStyle.Circles
+
+      const locatorStyle =
+        currentLocatorStyle === 'square'
+          ? wasmModuleRef.current.LocatorStyle.Square
+          : wasmModuleRef.current.LocatorStyle.Rounded
+
       const result = wasmModuleRef.current.generate_qr_code_with_options(
         inputText,
-        wasmModuleRef.current.ModuleStyle.Circles, // Data modules as circles (kCircles)
-        wasmModuleRef.current.LocatorStyle.Rounded, // Rounded locators (kRounded)
+        moduleStyle, // Data modules (kCircles or kSquares based on config)
+        locatorStyle, // Locator patterns (kRounded or kSquare based on config)
         centerImage, // Dynamic center image based on configuration
         wasmModuleRef.current.QuietZone.WillBeAddedByClient // Match Android bridge layer behavior
       )
@@ -460,7 +480,7 @@ const drawDinoPixelByPixel = (
       let mask = 0b10000000
 
       for (let col = 0; col < kDinoWidth; col++) {
-        if (srcArray[whichByte] & mask) {
+        if (srcArray[whichByte]! & mask) {
           const pixelX = destX + col * scaleX
           const pixelY = destY + (startRow + row) * scaleY
 
@@ -692,7 +712,7 @@ const renderQRCodeAtSize = (
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
       const dataIndex = y * size + x
-      if (pixelData[dataIndex] & 0x1) {
+      if (pixelData[dataIndex]! & 0x1) {
         let originalX: number, originalY: number
         if (hasQuietZone) {
           originalX = x - quietZoneModules

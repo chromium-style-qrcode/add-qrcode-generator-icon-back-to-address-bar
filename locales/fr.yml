@@ -23,3 +23,45 @@ options_footer: Les modifications prendront effet immédiatement après l'enregi
 options_custom_logo: Logo Personnalisé
 options_custom_logo_remove: Supprimer
 options_custom_logo_error: Image trop volumineuse, veuillez en essayer une plus petite
+options_module_style: Forme du Module
+options_module_style_description: Forme des points de données individuels
+options_module_style_circles: Cercles
+options_module_style_squares: Carrés
+options_locator_style: Style des Repères
+options_locator_style_description: Style des trois motifs d'angle
+options_locator_style_rounded: Arrondi
+options_locator_style_square: Carré
+options_foreground_color: Couleur de Premier Plan
+options_foreground_color_description: Couleur des modules sombres
+options_background_color: Couleur de Fond
+options_background_color_description: Couleur du fond clair
+
+# Menu contextuel
+context_menu_page: Créer un QR code pour cette page
+context_menu_selection: Créer un QR code pour le texte sélectionné
+
+# Barre d'adresse
+omnibox_default_suggestion: Générer un QR code - appuyez sur Entrée pour la page actuelle, ou saisissez d'abord le texte
+
+# Onglets du popup
+tab_link_text: Lien / Texte
+tab_scan: Décoder
+tab_history: Historique
+
+
+# Scanner
+scan_choose_image: Choisir une image
+scan_decoding: Décodage…
+scan_decode_error: Aucun QR code trouvé. Essayez une image plus nette.
+scan_copy_text: Copier le texte
+scan_generate_qr: Générer le QR
+scan_hint: Téléversez une capture d'écran ou une photo contenant un QR code pour lire son contenu.
+scan_from_page: Décoder la page actuelle
+scan_scanning: Décodage de la page…
+scan_page_not_found: Aucun QR code trouvé sur cette page
+scan_page_no_access: Impossible de décoder cette page. Essayez de la recharger ou utilisez une page web classique.
+
+# Historique
+history_empty: Aucun QR code généré pour le moment
+history_count: Générés récemment ($1)
+history_clear: Effacer

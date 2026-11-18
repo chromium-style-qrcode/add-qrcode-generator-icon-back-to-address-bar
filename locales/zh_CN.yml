@@ -23,3 +23,45 @@ options_footer: 保存后更改将立即生效
 options_custom_logo: 自定义 Logo
 options_custom_logo_remove: 移除
 options_custom_logo_error: 图片过大，请选择较小的图片
+options_module_style: 模块形状
+options_module_style_description: 数据点的形状
+options_module_style_circles: 圆形
+options_module_style_squares: 方形
+options_locator_style: 定位角样式
+options_locator_style_description: 三个角部定位图案的样式
+options_locator_style_rounded: 圆角
+options_locator_style_square: 直角
+options_foreground_color: 前景颜色
+options_foreground_color_description: 深色模块的颜色
+options_background_color: 背景颜色
+options_background_color_description: 浅色背景的颜色
+
+# 右键菜单
+context_menu_page: 为此页面创建二维码
+context_menu_selection: 为选中文本创建二维码
+
+# 地址栏命令
+omnibox_default_suggestion: 生成二维码 - 回车生成当前页面，或先输入文本
+
+# 弹窗标签
+tab_link_text: 链接 / 文本
+tab_scan: 解码
+tab_history: 历史
+
+
+# 扫码
+scan_choose_image: 选择图片
+scan_decoding: 解码中…
+scan_decode_error: 未找到二维码，请尝试更清晰的图片。
+scan_copy_text: 复制文本
+scan_generate_qr: 生成二维码
+scan_hint: 上传包含二维码的截图或照片以读取其内容。
+scan_from_page: 解码当前页面
+scan_scanning: 正在解码页面…
+scan_page_not_found: 未在当前页面找到二维码
+scan_page_no_access: 无法解码此页面，请刷新后重试（浏览器内部页面不支持）
+
+# 历史
+history_empty: 还没有生成过二维码
+history_count: 最近生成 ($1)
+history_clear: 清空

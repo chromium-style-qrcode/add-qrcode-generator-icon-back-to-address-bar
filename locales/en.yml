@@ -23,3 +23,45 @@ options_footer: Changes will take effect immediately after saving
 options_custom_logo: Custom Logo
 options_custom_logo_remove: Remove
 options_custom_logo_error: Image too large, please try a smaller one
+options_module_style: Module Shape
+options_module_style_description: Shape of the individual data dots
+options_module_style_circles: Circles
+options_module_style_squares: Squares
+options_locator_style: Locator Style
+options_locator_style_description: Style of the three corner patterns
+options_locator_style_rounded: Rounded
+options_locator_style_square: Square
+options_foreground_color: Foreground Color
+options_foreground_color_description: Color of the dark modules
+options_background_color: Background Color
+options_background_color_description: Color of the light background
+
+# Context menu
+context_menu_page: Create QR code for this page
+context_menu_selection: Create QR code for selected text
+
+# Omnibox
+omnibox_default_suggestion: Generate QR code - press Enter for the current page, or type text first
+
+# Popup tabs
+tab_link_text: Link / Text
+tab_scan: Decode
+tab_history: History
+
+
+# Scan
+scan_choose_image: Choose image
+scan_decoding: Decoding…
+scan_decode_error: No QR code found. Please try a clearer image.
+scan_copy_text: Copy text
+scan_generate_qr: Generate QR
+scan_hint: Upload a screenshot or photo containing a QR code to read its content.
+scan_from_page: Decode current page
+scan_scanning: Decoding page…
+scan_page_not_found: No QR code found on this page
+scan_page_no_access: This page cannot be decoded. Try refreshing it, or use a regular web page.
+
+# History
+history_empty: No QR codes generated yet
+history_count: Recently generated ($1)
+history_clear: Clear

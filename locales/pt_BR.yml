@@ -23,3 +23,45 @@ options_footer: As alterações terão efeito imediatamente após salvar
 options_custom_logo: Logo Personalizado
 options_custom_logo_remove: Remover
 options_custom_logo_error: Imagem muito grande, por favor tente uma menor
+options_module_style: Formato do Módulo
+options_module_style_description: Formato dos pontos de dados individuais
+options_module_style_circles: Círculos
+options_module_style_squares: Quadrados
+options_locator_style: Estilo do Localizador
+options_locator_style_description: Estilo dos três padrões de canto
+options_locator_style_rounded: Arredondado
+options_locator_style_square: Quadrado
+options_foreground_color: Cor de Primeiro Plano
+options_foreground_color_description: Cor dos módulos escuros
+options_background_color: Cor de Fundo
+options_background_color_description: Cor do fundo claro
+
+# Menu de contexto
+context_menu_page: Criar QR code para esta página
+context_menu_selection: Criar QR code para o texto selecionado
+
+# Barra de endereço
+omnibox_default_suggestion: Gerar QR code - pressione Enter para a página atual ou digite o texto primeiro
+
+# Abas do popup
+tab_link_text: Link / Texto
+tab_scan: Decodificar
+tab_history: Histórico
+
+
+# Escanear
+scan_choose_image: Escolher imagem
+scan_decoding: Decodificando…
+scan_decode_error: Nenhum QR code encontrado. Tente uma imagem mais nítida.
+scan_copy_text: Copiar texto
+scan_generate_qr: Gerar QR
+scan_hint: Envie uma captura de tela ou foto contendo um QR code para ler seu conteúdo.
+scan_from_page: Decodificar página atual
+scan_scanning: Decodificando página…
+scan_page_not_found: Nenhum QR code encontrado nesta página
+scan_page_no_access: Não foi possível decodificar esta página. Tente atualizá-la ou use uma página comum.
+
+# Histórico
+history_empty: Nenhum QR code gerado ainda
+history_count: Gerados recentemente ($1)
+history_clear: Limpar

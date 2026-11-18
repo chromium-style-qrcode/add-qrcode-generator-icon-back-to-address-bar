@@ -4,7 +4,11 @@ import { i18n } from '#i18n'
 import { Button } from '@/src/components/ui/button'
 
 import { compressImage } from '@/src/lib/utils'
-import { DEFAULT_CONFIG } from '@/src/constant/default'
+import {
+  DEFAULT_CONFIG,
+  type ModuleStyleOption,
+  type LocatorStyleOption
+} from '@/src/constant/default'
 
 function Options() {
   const [saveStatus, setSaveStatus] = useState('')
@@ -78,6 +82,102 @@ function Options() {
                   setConfig({ ...config, showLogo: checked })
                 }
                 className='border-border text-primary focus:ring-primary h-4 w-4 cursor-pointer rounded focus:ring-2'
+              />
+            </div>
+          </div>
+          <div className='space-y-4 border-t pt-4'>
+            <div className='flex items-center justify-between'>
+              <div className='space-y-1'>
+                <label className='text-foreground text-sm font-medium'>
+                  {i18n.t('options_module_style')}
+                </label>
+                <p className='text-muted-foreground text-sm'>
+                  {i18n.t('options_module_style_description')}
+                </p>
+              </div>
+              <select
+                value={config.moduleStyle}
+                aria-label={i18n.t('options_module_style')}
+                onChange={({ target: { value } }) =>
+                  setConfig({
+                    ...config,
+                    moduleStyle: value as ModuleStyleOption
+                  })
+                }
+                className='border-border bg-background text-foreground rounded border px-2 py-1 text-sm'
+              >
+                <option value='circles'>
+                  {i18n.t('options_module_style_circles')}
+                </option>
+                <option value='squares'>
+                  {i18n.t('options_module_style_squares')}
+                </option>
+              </select>
+            </div>
+            <div className='flex items-center justify-between'>
+              <div className='space-y-1'>
+                <label className='text-foreground text-sm font-medium'>
+                  {i18n.t('options_locator_style')}
+                </label>
+                <p className='text-muted-foreground text-sm'>
+                  {i18n.t('options_locator_style_description')}
+                </p>
+              </div>
+              <select
+                value={config.locatorStyle}
+                aria-label={i18n.t('options_locator_style')}
+                onChange={({ target: { value } }) =>
+                  setConfig({
+                    ...config,
+                    locatorStyle: value as LocatorStyleOption
+                  })
+                }
+                className='border-border bg-background text-foreground rounded border px-2 py-1 text-sm'
+              >
+                <option value='rounded'>
+                  {i18n.t('options_locator_style_rounded')}
+                </option>
+                <option value='square'>
+                  {i18n.t('options_locator_style_square')}
+                </option>
+              </select>
+            </div>
+            <div className='flex items-center justify-between'>
+              <div className='space-y-1'>
+                <label className='text-foreground text-sm font-medium'>
+                  {i18n.t('options_foreground_color')}
+                </label>
+                <p className='text-muted-foreground text-sm'>
+                  {i18n.t('options_foreground_color_description')}
+                </p>
+              </div>
+              <input
+                type='color'
+                value={config.foregroundColor}
+                aria-label={i18n.t('options_foreground_color')}
+                onChange={({ target: { value } }) =>
+                  setConfig({ ...config, foregroundColor: value })
+                }
+                className='h-9 w-12 cursor-pointer rounded border'
+              />
+            </div>
+            <div className='flex items-center justify-between'>
+              <div className='space-y-1'>
+                <label className='text-foreground text-sm font-medium'>
+                  {i18n.t('options_background_color')}
+                </label>
+                <p className='text-muted-foreground text-sm'>
+                  {i18n.t('options_background_color_description')}
+                </p>
+              </div>
+              <input
+                type='color'
+                value={config.backgroundColor}
+                aria-label={i18n.t('options_background_color')}
+                onChange={({ target: { value } }) =>
+                  setConfig({ ...config, backgroundColor: value })
+                }
+                className='h-9 w-12 cursor-pointer rounded border'
               />
             </div>
           </div>

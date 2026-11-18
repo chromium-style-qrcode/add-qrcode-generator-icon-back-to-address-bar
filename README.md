@@ -12,6 +12,10 @@ A Chrome extension that brings back the QR code generator functionality to your 
 - **Easy Download**: Download QR codes with smart filename generation
 - **Perfect Sizing**: Matches Chrome's exact QR code dimensions and styling
 - **Dark Mode Support**: Seamlessly integrates with your browser's theme
+- **Style Customization**: Choose module shape (circles/squares), locator style, and custom colors
+- **Decode QR Codes**: Upload an image or read the current page to extract any QR code's content
+- **Generation History**: Revisit, copy, and re-download recently generated QR codes
+- **Context Menu & Omnibox**: Right-click any page or selection, or type `qr` in the address bar
 
 ## 🚀 Installation
 

@@ -23,3 +23,45 @@ options_footer: 儲存後變更將立即生效
 options_custom_logo: 自訂 Logo
 options_custom_logo_remove: 移除
 options_custom_logo_error: 圖片過大，請選擇較小的圖片
+options_module_style: 模組形狀
+options_module_style_description: 資料點的形狀
+options_module_style_circles: 圓形
+options_module_style_squares: 方形
+options_locator_style: 定位角樣式
+options_locator_style_description: 三個角部定位圖案的樣式
+options_locator_style_rounded: 圓角
+options_locator_style_square: 直角
+options_foreground_color: 前景顏色
+options_foreground_color_description: 深色模組的顏色
+options_background_color: 背景顏色
+options_background_color_description: 淺色背景的顏色
+
+# 右鍵選單
+context_menu_page: 為此頁面建立二維碼
+context_menu_selection: 為選取文字建立二維碼
+
+# 網址列命令
+omnibox_default_suggestion: 產生二維碼 - 按 Enter 產生目前頁面，或先輸入文字
+
+# 彈窗標籤
+tab_link_text: 連結 / 文字
+tab_scan: 解碼
+tab_history: 歷史
+
+
+# 掃碼
+scan_choose_image: 選擇圖片
+scan_decoding: 解碼中…
+scan_decode_error: 找不到二維碼，請嘗試更清晰的圖片。
+scan_copy_text: 複製文字
+scan_generate_qr: 產生二維碼
+scan_hint: 上傳包含二維碼的截圖或照片以讀取其內容。
+scan_from_page: 解碼目前頁面
+scan_scanning: 正在解碼頁面…
+scan_page_not_found: 未在目前頁面找到二維碼
+scan_page_no_access: 無法解碼此頁面，請重新整理後重試（瀏覽器內部頁面不支援）
+
+# 歷史
+history_empty: 尚未產生過二維碼
+history_count: 最近產生 ($1)
+history_clear: 清空

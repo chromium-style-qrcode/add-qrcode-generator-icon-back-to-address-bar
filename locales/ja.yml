@@ -23,3 +23,45 @@ options_footer: 保存後、変更はすぐに反映されます
 options_custom_logo: カスタムロゴ
 options_custom_logo_remove: 削除
 options_custom_logo_error: 画像が大きすぎます。より小さい画像をお試しください
+options_module_style: モジュールの形状
+options_module_style_description: 個々のデータドットの形状
+options_module_style_circles: 円形
+options_module_style_squares: 四角形
+options_locator_style: 位置決めパターンのスタイル
+options_locator_style_description: 3つの角にある位置決めパターンのスタイル
+options_locator_style_rounded: 角丸
+options_locator_style_square: 直角
+options_foreground_color: 前景色
+options_foreground_color_description: 濃いモジュールの色
+options_background_color: 背景色
+options_background_color_description: 明るい背景の色
+
+# コンテキストメニュー
+context_menu_page: このページのQRコードを作成
+context_menu_selection: 選択したテキストのQRコードを作成
+
+# アドレスバー
+omnibox_default_suggestion: QRコードを生成 - Enterで現在のページ、または先にテキストを入力
+
+# ポップアップタブ
+tab_link_text: リンク / テキスト
+tab_scan: デコード
+tab_history: 履歴
+
+
+# スキャン
+scan_choose_image: 画像を選択
+scan_decoding: デコード中…
+scan_decode_error: QRコードが見つかりませんでした。より鮮明な画像をお試しください。
+scan_copy_text: テキストをコピー
+scan_generate_qr: QRを生成
+scan_hint: QRコードを含むスクリーンショットや写真をアップロードして、その内容を読み取ります。
+scan_from_page: 現在のページをデコード
+scan_scanning: ページをデコード中…
+scan_page_not_found: このページにQRコードが見つかりませんでした
+scan_page_no_access: このページはデコードできません。更新するか、通常のウェブページでお試しください。
+
+# 履歴
+history_empty: まだQRコードが生成されていません
+history_count: 最近生成したもの ($1)
+history_clear: クリア

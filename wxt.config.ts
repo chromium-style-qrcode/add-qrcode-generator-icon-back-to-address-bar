@@ -18,8 +18,9 @@ if (!process.env.VITE_QRCODE_SHORTCUT) {
 export default defineConfig({
   manifest: {
     default_locale: 'en',
-    permissions: ['activeTab', 'storage'],
+    permissions: ['activeTab', 'storage', 'contextMenus'],
     action: { default_popup: 'popup/index.html' },
+    omnibox: { keyword: 'qr' },
     options_ui: {
       open_in_tab: true,
       page: 'configuration.html'

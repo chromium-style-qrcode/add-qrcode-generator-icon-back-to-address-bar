@@ -12,39 +12,79 @@ import {
 import { Input } from '@/src/components/ui/input'
 import { Button } from '@/src/components/ui/button'
 import { QRCodeCanvas } from '@/src/components/ui/qrcode-canvas'
+import ScanView from '@/src/components/ui/scan-view'
+import HistoryView from '@/src/components/ui/history-view'
 
 import { ErrorType, useQRCode } from '@/src/hooks/use-qrcode'
+import { addHistoryItem } from '@/src/lib/history'
+
+type Mode = 'text' | 'scan' | 'history'
+
+const TABS = [
+  { id: 'text', labelKey: 'tab_link_text' },
+  { id: 'scan', labelKey: 'tab_scan' },
+  { id: 'history', labelKey: 'tab_history' }
+] as const
 
 function App() {
   const [qrState, qrActions] = useQRCode()
+  const [mode, setMode] = useState<Mode>('text')
   const [inputValue, setInputValue] = useState('')
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const [copyFeedback, setCopyFeedback] = useState('')
 
-  // Get current tab URL on mount
+  // Resolve pre-filled input (context menu / omnibox) or fall back to the
+  // current tab URL on mount.
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.chrome?.tabs) {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs[0]?.url) {
-          setInputValue(tabs[0].url)
+    const init = async () => {
+      let pending: string | undefined
+      try {
+        const { pendingInput } = await chrome.storage.session.get('pendingInput')
+        pending = pendingInput as string | undefined
+        if (pending) {
+          await chrome.storage.session.remove('pendingInput')
         }
-      })
+      } catch (error) {
+        console.error('Failed to read pending input:', error)
+      }
+
+      if (pending) {
+        setInputValue(pending)
+        setMode('text')
+      } else if (typeof window !== 'undefined' && window.chrome?.tabs) {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+          if (tabs[0]?.url) {
+            setInputValue(tabs[0].url)
+          }
+        })
+      }
     }
+
+    init()
 
     setTimeout(() => {
       titleRef.current?.style.setProperty('visibility', 'visible')
     }, 50) // Delay to ensure title is visible after initial render
   }, [])
 
-  // Generate QR code when input changes or configuration changes
+  // Generate QR code when input changes (debounced).
   useEffect(() => {
+    if (mode !== 'text') return
     const timer = setTimeout(() => {
       qrActions.generateQRCode(inputValue)
     }, 300) // Debounce input
 
     return () => clearTimeout(timer)
-  }, [inputValue, qrActions.generateQRCode])
+  }, [inputValue, mode, qrActions.generateQRCode])
+
+  // Save successfully generated QR codes to history (deduped, capped).
+  useEffect(() => {
+    if (mode !== 'text') return
+    if (qrState.qrData && qrState.qrSize > 0 && inputValue.trim()) {
+      addHistoryItem(inputValue)
+    }
+  }, [qrState.qrData, qrState.qrSize, inputValue, mode])
 
   const handleCopy = async () => {
     if (qrState.qrData) {
@@ -81,16 +121,16 @@ function App() {
     }
   }
 
-  const [
-    { error, qrData, qrSize, errorType, isLoading, originalSize } = qrState,
-    showInputLengthError = Boolean(error) &&
-      errorType === ErrorType.InputTooLong,
-    hasQRData = Boolean(qrData) && qrSize > 0,
-    disabled = !hasQRData || Boolean(isLoading)
-  ] = [] as unknown as []
+  const { error, qrData, qrSize, errorType, isLoading, originalSize } = qrState
+  const showInputLengthError =
+    Boolean(error) && errorType === ErrorType.InputTooLong
+  const hasQRData = Boolean(qrData) && qrSize > 0
+  const disabled = !hasQRData || Boolean(isLoading)
+
+  const showQR = mode === 'text'
 
   return (
-    <div className={`chromium-bubble flex w-80 flex-col p-0 leading-5`}>
+    <div className={`chromium-bubble flex w-80 min-h-[470px] flex-col p-0 leading-5`}>
       {/* Title bar with close button - matching Chromium's ShouldShowCloseButton() = true */}
       <div className='chromium-title-bar flex min-h-10 items-center justify-between border-b border-b-transparent px-4 py-3'>
         <div className='flex items-center gap-2'>
@@ -117,78 +157,123 @@ function App() {
           </svg>
         </button>
       </div>
-      {/* QR code display area - exactly matching Chromium's kQRImageSizePx = 240 */}
-      <div className='chromium-qr-container relative flex items-center justify-center self-center overflow-hidden border-2 bg-white'>
-        <QRCodeCanvas
-          {...{
-            qrData,
-            qrSize,
-            errorType,
-            isLoading,
-            originalSize
-          }}
-          error={error && !showInputLengthError ? error : null}
-          ref={canvasRef}
-        />
+
+      {/* Mode tabs */}
+      <div className='flex gap-1 border-b border-b-[var(--chromium-border)] px-3 py-2'>
+        {TABS.map((tab) => (
+          <button
+            key={tab.id}
+            type='button'
+            className={clsx(
+              'rounded-full px-3 py-1 text-xs leading-4 transition-colors',
+              mode === tab.id
+                ? 'bg-[var(--chromium-active)] text-[var(--chromium-focus)]'
+                : 'text-[var(--chromium-secondary-text)] hover:bg-[var(--chromium-hover)] hover:text-[var(--chromium-text)]'
+            )}
+            onClick={() => {
+              setMode(tab.id)
+              setCopyFeedback('')
+            }}
+          >
+            {i18n.t(tab.labelKey)}
+          </button>
+        ))}
       </div>
-      {/* URL input textfield - matching Chromium's textfield with accessibility */}
-      <div className='chromium-input-container'>
-        <Input
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          aria-label={i18n.t('aria_input_url_text')} // GetStringUTF16(IDS_BROWSER_SHARING_QR_CODE_DIALOG_URL_TEXTFIELD_ACCESSIBLE_NAME)
-          placeholder={i18n.t('placeholder_input_url_text')}
-          maxLength={2000} // kMaxInputLength from Chromium
-          className={`chromium-input text-sm transition-all focus:outline-none`}
-        />
-      </div>
-      {/* Bottom error label for input too long */}
-      <div
-        className={clsx(
-          'chromium-error-container',
-          showInputLengthError ? 'show-error' : 'hide-error'
-        )}
-      >
-        {showInputLengthError && (
-          <div className='chromium-error-text text-left leading-4'>{error}</div>
-        )}
-      </div>
-      {/* Button container - matching Chromium's BoxLayoutView with spacing */}
-      <div
-        className={clsx(
-          'chromium-button-container flex items-center gap-2',
-          showInputLengthError ? 'with-error' : 'without-error'
-        )}
-      >
-        {/* Tooltip icon - matching Chromium's TooltipIcon */}
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className='chromium-tooltip-icon flex items-center justify-center'>
-                <InfoCircledIcon className='h-full w-full' />
+
+      <div className='flex flex-1 flex-col'>
+        {showQR ? (
+          <>
+            {/* QR code display area - exactly matching Chromium's kQRImageSizePx = 240 */}
+          <div className='chromium-qr-container relative flex items-center justify-center self-center overflow-hidden border-2 bg-white'>
+            <QRCodeCanvas
+              {...{
+                qrData,
+                qrSize,
+                errorType,
+                isLoading,
+                originalSize
+              }}
+              error={error && !showInputLengthError ? error : null}
+              ref={canvasRef}
+            />
+          </div>
+          {/* URL input textfield */}
+          <div className='chromium-input-container'>
+            <Input
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              aria-label={i18n.t('aria_input_url_text')} // GetStringUTF16(IDS_BROWSER_SHARING_QR_CODE_DIALOG_URL_TEXTFIELD_ACCESSIBLE_NAME)
+              placeholder={i18n.t('placeholder_input_url_text')}
+              maxLength={2000} // kMaxInputLength from Chromium
+              className={`chromium-input text-sm transition-all focus:outline-none`}
+            />
+          </div>
+          {/* Bottom error label for input too long */}
+          <div
+            className={clsx(
+              'chromium-error-container',
+              showInputLengthError ? 'show-error' : 'hide-error'
+            )}
+          >
+            {showInputLengthError && (
+              <div className='chromium-error-text text-left leading-4'>
+                {error}
               </div>
-            </TooltipTrigger>
-            <TooltipContent side='top' align='start'>
-              <p className='chromium-tooltip-content'>{i18n.t('tips')}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-        {/* Flex spacer */}
-        <div className='flex-1' />
-        <Button
-          disabled={disabled}
-          className='chromium-button min-h-8 min-w-16 rounded-2xl border px-4 py-2 text-center leading-5 disabled:cursor-not-allowed'
-          onClick={handleCopy}
-        >
-          {copyFeedback || i18n.t('copy')}
-        </Button>
-        <Button
-          disabled={disabled}
-          className='chromium-button min-h-8 min-w-16 rounded-2xl border px-4 py-2 text-center leading-5 disabled:cursor-not-allowed'
-          onClick={handleDownload}
-        >
-          {i18n.t('download')}
-        </Button>
+            )}
+          </div>
+          {/* Button container - matching Chromium's BoxLayoutView with spacing */}
+          <div
+            className={clsx(
+              'chromium-button-container flex items-center gap-2',
+              showInputLengthError ? 'with-error' : 'without-error'
+            )}
+          >
+            {/* Tooltip icon - matching Chromium's TooltipIcon */}
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className='chromium-tooltip-icon flex items-center justify-center'>
+                    <InfoCircledIcon className='h-full w-full' />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent side='top' align='start'>
+                  <p className='chromium-tooltip-content'>{i18n.t('tips')}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            {/* Flex spacer */}
+            <div className='flex-1' />
+            <Button
+              disabled={disabled}
+              className='chromium-button min-h-8 min-w-16 rounded-2xl border px-4 py-2 text-center leading-5 disabled:cursor-not-allowed'
+              onClick={handleCopy}
+            >
+              {copyFeedback || i18n.t('copy')}
+            </Button>
+            <Button
+              disabled={disabled}
+              className='chromium-button min-h-8 min-w-16 rounded-2xl border px-4 py-2 text-center leading-5 disabled:cursor-not-allowed'
+              onClick={handleDownload}
+            >
+              {i18n.t('download')}
+            </Button>
+          </div>
+        </>
+      ) : mode === 'scan' ? (
+        <ScanView
+          onUseResult={(text) => {
+            setInputValue(text)
+            setMode('text')
+          }}
+        />
+      ) : (
+        <HistoryView
+          onSelect={(text) => {
+            setInputValue(text)
+            setMode('text')
+          }}
+        />
+      )}
       </div>
     </div>
   )

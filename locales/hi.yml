@@ -23,3 +23,45 @@ options_footer: सहेजने के बाद परिवर्तन त
 options_custom_logo: कस्टम लोगो
 options_custom_logo_remove: हटाएँ
 options_custom_logo_error: छवि बहुत बड़ी है, कृपया छोटी छवि का प्रयास करें
+options_module_style: मॉड्यूल का आकार
+options_module_style_description: अलग-अलग डेटा बिंदुओं का आकार
+options_module_style_circles: वृत्त
+options_module_style_squares: वर्ग
+options_locator_style: लोकेटर शैली
+options_locator_style_description: तीन कोने वाले पैटर्न की शैली
+options_locator_style_rounded: गोलाकार
+options_locator_style_square: वर्गाकार
+options_foreground_color: अग्रभूमि रंग
+options_foreground_color_description: गहरे मॉड्यूल का रंग
+options_background_color: पृष्ठभूमि रंग
+options_background_color_description: हल्की पृष्ठभूमि का रंग
+
+# संदर्भ मेनू
+context_menu_page: इस पेज के लिए QR कोड बनाएँ
+context_menu_selection: चयनित टेक्स्ट के लिए QR कोड बनाएँ
+
+# पता बार
+omnibox_default_suggestion: QR कोड बनाएँ - वर्तमान पेज के लिए Enter दबाएँ, या पहले टेक्स्ट लिखें
+
+# पॉपअप टैब
+tab_link_text: लिंक / टेक्स्ट
+tab_scan: डिकोड करें
+tab_history: इतिहास
+
+
+# स्कैन
+scan_choose_image: छवि चुनें
+scan_decoding: डिकोड हो रहा है…
+scan_decode_error: कोई QR कोड नहीं मिला। कृपया स्पष्ट छवि आज़माएँ।
+scan_copy_text: टेक्स्ट कॉपी करें
+scan_generate_qr: QR बनाएँ
+scan_hint: QR कोड वाला स्क्रीनशॉट या फ़ोटो अपलोड करके उसकी सामग्री पढ़ें।
+scan_from_page: वर्तमान पेज डिकोड करें
+scan_scanning: पेज डिकोड हो रहा है…
+scan_page_not_found: इस पेज पर कोई QR कोड नहीं मिला
+scan_page_no_access: यह पेज डिकोड नहीं हो सकता। इसे रीफ़्रेश करके देखें या सामान्य वेब पेज का उपयोग करें।
+
+# इतिहास
+history_empty: अभी तक कोई QR कोड नहीं बना है
+history_count: हाल ही में बनाए गए ($1)
+history_clear: साफ़ करें
