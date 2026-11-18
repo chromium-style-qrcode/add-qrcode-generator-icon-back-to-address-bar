@@ -6,6 +6,7 @@ tips: このQRコードをスキャンするには、スマートフォンのQR�
 aria_close: 閉じる
 aria_input_url_text: エンコードするURLまたはテキスト
 placeholder_input_url_text: URLまたはテキストを入力
+page_url_unavailable: このページのURLは取得できません（ブラウザ内部ページ）。手動でテキストを入力してQRコードを作成してください。
 error_init_failed: QRコードジェネレーターの初期化に失敗しました
 error_input_too_long: 入力が長すぎます。$1文字以内に短縮してください。
 error_generate_failed: QRコードを生成できませんでした。もう一度お試しください。

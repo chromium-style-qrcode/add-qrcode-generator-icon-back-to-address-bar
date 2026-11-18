@@ -33,6 +33,7 @@ function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const [copyFeedback, setCopyFeedback] = useState('')
+  const [urlUnavailable, setUrlUnavailable] = useState(false)
 
   // Resolve pre-filled input (context menu / omnibox) or fall back to the
   // current tab URL on mount.
@@ -56,6 +57,10 @@ function App() {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
           if (tabs[0]?.url) {
             setInputValue(tabs[0].url)
+          } else if (tabs[0]) {
+            // The tab exists but its URL is hidden (e.g. chrome://, the
+            // extension gallery, or another restricted internal page).
+            setUrlUnavailable(true)
           }
         })
       }
@@ -208,6 +213,14 @@ function App() {
               className={`chromium-input text-sm transition-all focus:outline-none`}
             />
           </div>
+          {/* Hint when the current page URL cannot be read (e.g. chrome://) */}
+          {urlUnavailable && (
+            <div className='chromium-input-container -mt-1 mb-2'>
+              <p className='text-xs leading-4 text-[var(--chromium-secondary-text)]'>
+                {i18n.t('page_url_unavailable')}
+              </p>
+            </div>
+          )}
           {/* Bottom error label for input too long */}
           <div
             className={clsx(

@@ -6,6 +6,7 @@ tips: Para escanear este código, você pode usar um aplicativo de scanner QR no
 aria_close: Fechar
 aria_input_url_text: URL ou texto para codificar
 placeholder_input_url_text: Insira URL ou texto
+page_url_unavailable: A URL desta página não está acessível. Digite o texto manualmente para criar um QR code.
 error_init_failed: Falha ao inicializar o gerador de QR code
 error_input_too_long: O texto é muito longo. Por favor, reduza para $1 caracteres ou menos.
 error_generate_failed: Não foi possível gerar o QR code. Por favor, tente novamente.

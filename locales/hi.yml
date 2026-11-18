@@ -6,6 +6,7 @@ tips: इस कोड को स्कैन करने के लिए, आ
 aria_close: बंद करें
 aria_input_url_text: एनकोड करने के लिए URL या टेक्स्ट
 placeholder_input_url_text: URL या टेक्स्ट दर्ज करें
+page_url_unavailable: इस पेज का URL उपलब्ध नहीं है। QR कोड बनाने के लिए टेक्स्ट मैन्युअल रूप से दर्ज करें।
 error_init_failed: QR कोड जनरेटर को शुरू करने में विफल
 error_input_too_long: इनपुट बहुत लंबा है। कृपया टेक्स्ट को $1 अक्षरों या उससे कम तक छोटा करें।
 error_generate_failed: QR कोड जनरेट नहीं हो सका। कृपया पुनः प्रयास करें।
