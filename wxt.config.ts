@@ -27,7 +27,7 @@ export default defineConfig({
     },
     name: 'Add QR Code Generator Icon Back To Address Bar',
     description:
-      'A Extension To Add QR Code Generator Icon Back To Address Bar',
+      'An Extension To Add QR Code Generator Icon Back To Address Bar',
     commands: {
       [process.env.VITE_QRCODE_COMMAND_ID as keyof any]: {
         suggested_key: {
