@@ -66,3 +66,17 @@ scan_page_no_access: このページはデコードできません。更新す�
 history_empty: まだQRコードが生成されていません
 history_count: 最近生成したもの ($1)
 history_clear: クリア
+
+# Pro / ライセンス
+pro_locked_hint: Pro機能です。アップグレードで解除されます
+export_svg: SVG
+export_svg_pro: SVG Pro
+options_pro_title: Proにアップグレード
+license_label: Proライセンス
+license_activate: 有効化
+license_activate_failed: 有効化に失敗しました。キーを確認してください
+license_activated: Proが有効になりました。ありがとうございます！
+license_deactivate: 無効化
+license_deactivated: ライセンスを無効化しました
+license_pro_active: Proはこのデバイスで有効です
+license_thank_you: プロジェクトを支援いただきありがとうございます！

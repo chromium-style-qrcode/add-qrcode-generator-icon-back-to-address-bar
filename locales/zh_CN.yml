@@ -66,3 +66,17 @@ scan_page_no_access: 无法解码此页面，请刷新后重试（浏览器内�
 history_empty: 还没有生成过二维码
 history_count: 最近生成 ($1)
 history_clear: 清空
+
+# Pro / 授权
+pro_locked_hint: 这是 Pro 功能，升级后解锁
+export_svg: SVG
+export_svg_pro: SVG Pro
+options_pro_title: 升级到 Pro
+license_label: Pro 授权
+license_activate: 激活
+license_activate_failed: 激活失败，请检查授权码
+license_activated: Pro 已激活，感谢支持！
+license_deactivate: 停用
+license_deactivated: 授权已停用
+license_pro_active: Pro 已在此设备激活
+license_thank_you: 感谢支持本项目！

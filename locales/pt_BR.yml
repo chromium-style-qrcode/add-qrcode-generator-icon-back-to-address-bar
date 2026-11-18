@@ -66,3 +66,17 @@ scan_page_no_access: Não foi possível decodificar esta página. Tente atualiz�
 history_empty: Nenhum QR code gerado ainda
 history_count: Gerados recentemente ($1)
 history_clear: Limpar
+
+# Pro / Licença
+pro_locked_hint: Recurso Pro. Faça upgrade para desbloquear
+export_svg: SVG
+export_svg_pro: SVG Pro
+options_pro_title: Fazer upgrade para Pro
+license_label: Licença Pro
+license_activate: Ativar
+license_activate_failed: Falha na ativação. Verifique sua chave
+license_activated: Pro ativado. Obrigado!
+license_deactivate: Desativar
+license_deactivated: Licença desativada
+license_pro_active: Pro está ativo neste dispositivo
+license_thank_you: Obrigado por apoiar este projeto!

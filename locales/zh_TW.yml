@@ -66,3 +66,17 @@ scan_page_no_access: 無法解碼此頁面，請重新整理後重試（瀏覽�
 history_empty: 尚未產生過二維碼
 history_count: 最近產生 ($1)
 history_clear: 清空
+
+# Pro / 授權
+pro_locked_hint: 這是 Pro 功能，升級後解鎖
+export_svg: SVG
+export_svg_pro: SVG Pro
+options_pro_title: 升級到 Pro
+license_label: Pro 授權
+license_activate: 啟用
+license_activate_failed: 啟用失敗，請檢查授權碼
+license_activated: Pro 已啟用，感謝支持！
+license_deactivate: 停用
+license_deactivated: 授權已停用
+license_pro_active: Pro 已在此裝置啟用
+license_thank_you: 感謝支持本專案！

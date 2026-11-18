@@ -66,3 +66,17 @@ scan_page_no_access: यह पेज डिकोड नहीं हो सक
 history_empty: अभी तक कोई QR कोड नहीं बना है
 history_count: हाल ही में बनाए गए ($1)
 history_clear: साफ़ करें
+
+# Pro / लाइसेंस
+pro_locked_hint: यह Pro सुविधा है। अनलॉक करने के लिए अपग्रेड करें
+export_svg: SVG
+export_svg_pro: SVG Pro
+options_pro_title: Pro में अपग्रेड करें
+license_label: Pro लाइसेंस
+license_activate: सक्रिय करें
+license_activate_failed: सक्रियण विफल। कृपया अपनी कुंजी जाँचें
+license_activated: Pro सक्रिय हो गया। धन्यवाद!
+license_deactivate: निष्क्रिय करें
+license_deactivated: लाइसेंस निष्क्रिय हो गया
+license_pro_active: Pro इस डिवाइस पर सक्रिय है
+license_thank_you: इस प्रोजेक्ट का समर्थन करने के लिए धन्यवाद!

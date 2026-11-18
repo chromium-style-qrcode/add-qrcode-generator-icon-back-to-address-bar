@@ -17,6 +17,11 @@ import HistoryView from '@/src/components/ui/history-view'
 
 import { ErrorType, useQRCode } from '@/src/hooks/use-qrcode'
 import { addHistoryItem } from '@/src/lib/history'
+import { loadPlan } from '@/src/lib/license'
+import { PRICING_URL } from '@/src/lib/pro'
+import { downloadSvg } from '@/src/lib/export'
+import { DEFAULT_CONFIG } from '@/src/constant/default'
+import type { Plan } from '@/src/lib/types'
 
 type Mode = 'text' | 'scan' | 'history'
 
@@ -34,6 +39,11 @@ function App() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const [copyFeedback, setCopyFeedback] = useState('')
   const [urlUnavailable, setUrlUnavailable] = useState(false)
+  const [plan, setPlan] = useState<Plan>('free')
+
+  useEffect(() => {
+    void loadPlan().then(setPlan)
+  }, [])
 
   // Resolve pre-filled input (context menu / omnibox) or fall back to the
   // current tab URL on mount.
@@ -124,6 +134,22 @@ function App() {
       }
       qrActions.downloadQRCode(filename)
     }
+  }
+
+  const handleExportSvg = () => {
+    if (!qrState.qrData || !qrState.originalSize) return
+    if (plan !== 'pro') {
+      window.open(PRICING_URL, '_blank', 'noopener')
+      return
+    }
+    chrome.storage.sync.get(DEFAULT_CONFIG, (cfg) => {
+      downloadSvg('qrcode.svg', qrState.qrData!, qrState.qrSize, qrState.originalSize, {
+        moduleStyle: cfg.moduleStyle,
+        locatorStyle: cfg.locatorStyle,
+        foreground: cfg.foregroundColor,
+        background: cfg.backgroundColor
+      })
+    })
   }
 
   const { error, qrData, qrSize, errorType, isLoading, originalSize } = qrState
@@ -269,6 +295,14 @@ function App() {
               onClick={handleDownload}
             >
               {i18n.t('download')}
+            </Button>
+            <Button
+              disabled={disabled}
+              title={plan !== 'pro' ? i18n.t('pro_locked_hint') : undefined}
+              className='chromium-button min-h-8 min-w-16 rounded-2xl border px-4 py-2 text-center leading-5 disabled:cursor-not-allowed'
+              onClick={handleExportSvg}
+            >
+              {plan === 'pro' ? i18n.t('export_svg') : i18n.t('export_svg_pro')}
             </Button>
           </div>
         </>

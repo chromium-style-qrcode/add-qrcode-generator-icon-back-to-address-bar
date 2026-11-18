@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react'
 import { i18n } from '#i18n'
 
 import { Button } from '@/src/components/ui/button'
+import LicenseSection from '@/src/components/ui/license-section'
 
 import { compressImage } from '@/src/lib/utils'
+import { loadPlan } from '@/src/lib/license'
+import type { Plan } from '@/src/lib/types'
 import {
   DEFAULT_CONFIG,
   type ModuleStyleOption,
@@ -13,9 +16,11 @@ import {
 function Options() {
   const [saveStatus, setSaveStatus] = useState('')
   const [config, setConfig] = useState(DEFAULT_CONFIG)
+  const [plan, setPlan] = useState<Plan>('free')
 
   useEffect(() => {
     chrome.storage!.sync.get(DEFAULT_CONFIG, setConfig)
+    void loadPlan().then(setPlan)
   }, [])
 
   const handleCleanUp = () => {
@@ -242,6 +247,9 @@ function Options() {
               </div>
             </div>
           </div>
+        </div>
+        <div className='mt-6'>
+          <LicenseSection plan={plan} onPlanChange={setPlan} />
         </div>
         <div className='mt-6 text-center'>
           <p className='text-muted-foreground text-sm'>

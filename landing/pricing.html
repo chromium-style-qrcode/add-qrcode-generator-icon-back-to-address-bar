@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing — QR Code Generator</title>
+    <meta
+      name="description"
+      content="QR Code Generator is free to use. QR Pro is a one-time purchase that unlocks SVG export, high-resolution PNG, and more."
+    />
+    <style>
+      :root { color-scheme: light dark; }
+      * { box-sizing: border-box; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        margin: 0; line-height: 1.6; background: #fff; color: #1a1a1a;
+      }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 56px 20px; }
+      h1 { font-size: 34px; margin: 0 0 8px; text-align: center; letter-spacing: -0.02em; }
+      .sub { color: #555; text-align: center; margin: 0 0 40px; font-size: 17px; }
+      .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      @media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }
+      .plan { border: 1px solid #e5e5e5; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; }
+      .plan.pro { border: 2px solid #1a73e8; box-shadow: 0 8px 30px rgba(26, 115, 232, 0.12); }
+      .plan h2 { margin: 0 0 4px; font-size: 22px; }
+      .plan .price { font-size: 40px; font-weight: 700; margin: 8px 0 0; letter-spacing: -0.02em; }
+      .plan .billing { color: #555; font-size: 14px; margin: 0 0 20px; }
+      .plan ul { list-style: none; padding: 0; margin: 0 0 24px; flex: 1; }
+      .plan li { padding: 7px 0 7px 28px; position: relative; font-size: 15px; color: #333; }
+      .plan li::before { content: "✓"; position: absolute; left: 0; color: #1a73e8; font-weight: 700; }
+      .plan li.na::before { content: "·"; color: #999; }
+      .cta { display: block; text-align: center; padding: 13px 20px; border-radius: 10px; font-weight: 600; font-size: 16px; text-decoration: none; }
+      .cta.primary { background: #1a73e8; color: #fff; }
+      .cta.primary:hover { background: #1765cc; }
+      .cta.secondary { background: #f0f0f0; color: #333; border: 1px solid #ddd; }
+      .cta.secondary:hover { background: #e7e7e7; }
+      .fine { text-align: center; color: #888; font-size: 13px; margin-top: 24px; }
+      .fine a { color: #1a73e8; }
+      footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid #e5e5e5; color: #888; font-size: 13px; }
+      footer a { color: #888; }
+      @media (prefers-color-scheme: dark) {
+        body { background: #111; color: #eaeaea; }
+        .sub, .billing, .fine { color: #bbb; }
+        .plan { border-color: #262626; }
+        .plan.pro { border-color: #1a73e8; }
+        .plan li { color: #ccc; }
+        .cta.secondary { background: #1c1c1c; color: #ddd; border-color: #333; }
+        .cta.secondary:hover { background: #262626; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Simple pricing</h1>
+      <p class="sub">Free for everyday use. Pay once for Pro — no subscription.</p>
+
+      <div class="plans">
+        <div class="plan">
+          <h2>Free</h2>
+          <p class="price">$0</p>
+          <p class="billing">Free forever</p>
+          <ul>
+            <li>QR for the current page or any text</li>
+            <li>Copy &amp; download as PNG</li>
+            <li>Chromium-style QR with the Chrome dinosaur</li>
+            <li>Style customization (shape, corners, colors)</li>
+            <li>Right-click &amp; address-bar shortcuts</li>
+            <li>Decode QR codes from images &amp; pages</li>
+            <li>Generation history</li>
+            <li class="na">SVG vector export</li>
+            <li class="na">High-resolution PNG</li>
+            <li class="na">Batch generation</li>
+          </ul>
+          <a class="cta secondary" href="https://chromewebstore.google.com/detail/add-qr-code-generator-ico/kacblhilkacgfnkjfodalohcnllcgmjd">
+            Add to Chrome
+          </a>
+        </div>
+
+        <div class="plan pro">
+          <h2>Pro</h2>
+          <p class="price">$9.99</p>
+          <p class="billing">One-time purchase · lifetime license</p>
+          <ul>
+            <li>Everything in Free</li>
+            <li>SVG vector export</li>
+            <li>High-resolution PNG (2×/4×)</li>
+            <li>Batch generation</li>
+            <li>Lifetime license, no subscription, no auto-renewal</li>
+            <li>Includes future Pro feature updates</li>
+          </ul>
+          <!-- TODO: replace with your Waffo Pancake product link -->
+          <a class="cta primary" href="https://pancake.waffo.ai/store/YOUR_STORE/product/YOUR_PRODUCT?type=onetime&currency=USD&success_url=https%3A%2F%2Fexample.com%2Factivate.html">
+            Buy Pro
+          </a>
+        </div>
+      </div>
+
+      <p class="fine">
+        Pro is a one-time purchase of $9.99, handled by our merchant of record,
+        <a href="https://waffo.dev" target="_blank" rel="noopener">Waffo Pancake</a>.
+        After payment you'll be redirected to a page to retrieve your license key.
+      </p>
+
+      <footer>
+        <p><a href="/">← Back</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

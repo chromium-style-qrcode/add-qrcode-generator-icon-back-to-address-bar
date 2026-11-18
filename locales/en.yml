@@ -66,3 +66,17 @@ scan_page_no_access: This page cannot be decoded. Try refreshing it, or use a re
 history_empty: No QR codes generated yet
 history_count: Recently generated ($1)
 history_clear: Clear
+
+# Pro / License
+pro_locked_hint: This is a Pro feature. Upgrade to unlock.
+export_svg: SVG
+export_svg_pro: SVG Pro
+options_pro_title: Upgrade to Pro
+license_label: Pro License
+license_activate: Activate
+license_activate_failed: Activation failed. Please check your key.
+license_activated: Pro activated. Thank you!
+license_deactivate: Deactivate
+license_deactivated: License deactivated
+license_pro_active: Pro is active on this device
+license_thank_you: Thank you for supporting this project.
