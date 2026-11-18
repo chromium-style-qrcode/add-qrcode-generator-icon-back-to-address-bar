@@ -2,14 +2,14 @@ copy: 复制
 download: 下载
 copied: 已复制!
 title: 扫描二维码
-tips: 要扫描此二维码，您可以使用手机上的二维码扫描器应用，也可以使用某些相机应用。或使用 Alt+Shift+Q 快捷键快速呼出。
+tips: 要扫描此二维码，您可以使用手机上的二维码扫描器应用，也可以使用某些相机应用。或使用 Alt+Shift+Q 快捷键快速呼出
 aria_close: 关闭
 aria_input_url_text: 要编码的URL或文本
 placeholder_input_url_text: 输入URL或文本
-page_url_unavailable: 无法读取此页面的 URL（浏览器内部页面），请手动输入内容以创建二维码。
+page_url_unavailable: 无法读取此页面的 URL（浏览器内部页面），请手动输入内容以创建二维码
 error_init_failed: 二维码生成器初始化失败
-error_input_too_long: 输入内容过长，请将文本缩短至$1个字符以内。
-error_generate_failed: 无法生成二维码，请重试。
+error_input_too_long: 输入内容过长，请将文本缩短至$1个字符以内
+error_generate_failed: 无法生成二维码，请重试
 
 # 配置页面
 options_title: 二维码生成器配置
@@ -53,10 +53,10 @@ tab_history: 历史
 # 扫码
 scan_choose_image: 选择图片
 scan_decoding: 解码中…
-scan_decode_error: 未找到二维码，请尝试更清晰的图片。
+scan_decode_error: 未找到二维码，请尝试更清晰的图片
 scan_copy_text: 复制文本
 scan_generate_qr: 生成二维码
-scan_hint: 上传包含二维码的截图或照片以读取其内容。
+scan_hint: 上传包含二维码的截图或照片以读取其内容
 scan_from_page: 解码当前页面
 scan_scanning: 正在解码页面…
 scan_page_not_found: 未在当前页面找到二维码

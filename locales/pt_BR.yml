@@ -2,14 +2,14 @@ copy: Copiar
 copied: Copiado!
 download: Baixar
 title: Escanear QR Code
-tips: Para escanear este código, você pode usar um aplicativo de scanner QR no seu celular ou alguns aplicativos de câmera. Ou use o atalho Alt+Shift+Q para abrir rapidamente.
+tips: Para escanear este código, você pode usar um aplicativo de scanner QR no seu celular ou alguns aplicativos de câmera. Ou use o atalho Alt+Shift+Q para abrir rapidamente
 aria_close: Fechar
 aria_input_url_text: URL ou texto para codificar
 placeholder_input_url_text: Insira URL ou texto
-page_url_unavailable: A URL desta página não está acessível. Digite o texto manualmente para criar um QR code.
+page_url_unavailable: A URL desta página não está acessível. Digite o texto manualmente para criar um QR code
 error_init_failed: Falha ao inicializar o gerador de QR code
-error_input_too_long: O texto é muito longo. Por favor, reduza para $1 caracteres ou menos.
-error_generate_failed: Não foi possível gerar o QR code. Por favor, tente novamente.
+error_input_too_long: O texto é muito longo. Por favor, reduza para $1 caracteres ou menos
+error_generate_failed: Não foi possível gerar o QR code. Por favor, tente novamente
 
 # Página de configuração
 options_title: Configuração do Gerador de QR Code
@@ -53,14 +53,14 @@ tab_history: Histórico
 # Escanear
 scan_choose_image: Escolher imagem
 scan_decoding: Decodificando…
-scan_decode_error: Nenhum QR code encontrado. Tente uma imagem mais nítida.
+scan_decode_error: Nenhum QR code encontrado. Tente uma imagem mais nítida
 scan_copy_text: Copiar texto
 scan_generate_qr: Gerar QR
-scan_hint: Envie uma captura de tela ou foto contendo um QR code para ler seu conteúdo.
+scan_hint: Envie uma captura de tela ou foto contendo um QR code para ler seu conteúdo
 scan_from_page: Decodificar página atual
 scan_scanning: Decodificando página…
 scan_page_not_found: Nenhum QR code encontrado nesta página
-scan_page_no_access: Não foi possível decodificar esta página. Tente atualizá-la ou use uma página comum.
+scan_page_no_access: Não foi possível decodificar esta página. Tente atualizá-la ou use uma página comum
 
 # Histórico
 history_empty: Nenhum QR code gerado ainda

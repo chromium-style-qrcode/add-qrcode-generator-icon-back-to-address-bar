@@ -2,14 +2,14 @@ copy: Copy
 copied: Copied!
 download: Download
 title: Scan QR Code
-tips: To scan this code, you can use a QR scanner app on your phone, or some camera apps. Or use Alt+Shift+Q shortcut to quickly open.
+tips: To scan this code, you can use a QR scanner app on your phone, or some camera apps. Or use Alt+Shift+Q shortcut to quickly open
 aria_close: Close
 aria_input_url_text: URL or text to encode
 placeholder_input_url_text: Enter URL or text
-page_url_unavailable: This page's URL is not accessible. Enter text manually to create a QR code.
+page_url_unavailable: This page's URL is not accessible. Enter text manually to create a QR code
 error_init_failed: Failed to initialize QR code generator
-error_input_too_long: Input is too long. Please shorten the text to $1 characters or less.
-error_generate_failed: Could not generate QR code. Please try again.
+error_input_too_long: Input is too long. Please shorten the text to $1 characters or less
+error_generate_failed: Could not generate QR code. Please try again
 
 # Configuration page
 options_title: QR Code Generator Configuration
@@ -53,14 +53,14 @@ tab_history: History
 # Scan
 scan_choose_image: Choose image
 scan_decoding: Decoding…
-scan_decode_error: No QR code found. Please try a clearer image.
+scan_decode_error: No QR code found. Please try a clearer image
 scan_copy_text: Copy text
 scan_generate_qr: Generate QR
-scan_hint: Upload a screenshot or photo containing a QR code to read its content.
+scan_hint: Upload a screenshot or photo containing a QR code to read its content
 scan_from_page: Decode current page
 scan_scanning: Decoding page…
 scan_page_not_found: No QR code found on this page
-scan_page_no_access: This page cannot be decoded. Try refreshing it, or use a regular web page.
+scan_page_no_access: This page cannot be decoded. Try refreshing it, or use a regular web page
 
 # History
 history_empty: No QR codes generated yet

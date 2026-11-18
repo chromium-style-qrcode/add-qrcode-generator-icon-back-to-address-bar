@@ -2,14 +2,14 @@ copy: 復製
 download: 下載
 copied: 已復製!
 title: 掃描二維碼
-tips: 要掃描此二維碼，您可以使用手機上的二維碼掃描器應用，也可以使用某些相機應用。或使用 Alt+Shift+Q 快捷鍵快速呼出。
+tips: 要掃描此二維碼，您可以使用手機上的二維碼掃描器應用，也可以使用某些相機應用。或使用 Alt+Shift+Q 快捷鍵快速呼出
 aria_close: 關閉
 aria_input_url_text: 要編碼的URL或文字
 placeholder_input_url_text: 輸入URL或文字
-page_url_unavailable: 無法讀取此頁面的 URL（瀏覽器內部頁面），請手動輸入內容以建立二維碼。
+page_url_unavailable: 無法讀取此頁面的 URL（瀏覽器內部頁面），請手動輸入內容以建立二維碼
 error_init_failed: 二維碼產生器初始化失敗
-error_input_too_long: 輸入內容過長，請將文字縮短至$1個字元以內。
-error_generate_failed: 無法產生二維碼，請重試。
+error_input_too_long: 輸入內容過長，請將文字縮短至$1個字元以內
+error_generate_failed: 無法產生二維碼，請重試
 
 # 配置頁面
 options_title: 二維碼產生器配置
@@ -53,10 +53,10 @@ tab_history: 歷史
 # 掃碼
 scan_choose_image: 選擇圖片
 scan_decoding: 解碼中…
-scan_decode_error: 找不到二維碼，請嘗試更清晰的圖片。
+scan_decode_error: 找不到二維碼，請嘗試更清晰的圖片
 scan_copy_text: 複製文字
 scan_generate_qr: 產生二維碼
-scan_hint: 上傳包含二維碼的截圖或照片以讀取其內容。
+scan_hint: 上傳包含二維碼的截圖或照片以讀取其內容
 scan_from_page: 解碼目前頁面
 scan_scanning: 正在解碼頁面…
 scan_page_not_found: 未在目前頁面找到二維碼

@@ -2,14 +2,14 @@ copy: コピー
 copied: コピーしました！
 download: ダウンロード
 title: QRコードをスキャン
-tips: このQRコードをスキャンするには、スマートフォンのQRコードスキャナーアプリや一部のカメラアプリをご利用ください。または Alt+Shift+Q ショートカットで素早く開けます。
+tips: このQRコードをスキャンするには、スマートフォンのQRコードスキャナーアプリや一部のカメラアプリをご利用ください。または Alt+Shift+Q ショートカットで素早く開けます
 aria_close: 閉じる
 aria_input_url_text: エンコードするURLまたはテキスト
 placeholder_input_url_text: URLまたはテキストを入力
-page_url_unavailable: このページのURLは取得できません（ブラウザ内部ページ）。手動でテキストを入力してQRコードを作成してください。
+page_url_unavailable: このページのURLは取得できません（ブラウザ内部ページ）。手動でテキストを入力してQRコードを作成してください
 error_init_failed: QRコードジェネレーターの初期化に失敗しました
-error_input_too_long: 入力が長すぎます。$1文字以内に短縮してください。
-error_generate_failed: QRコードを生成できませんでした。もう一度お試しください。
+error_input_too_long: 入力が長すぎます。$1文字以内に短縮してください
+error_generate_failed: QRコードを生成できませんでした。もう一度お試しください
 
 # 設定ページ
 options_title: QRコードジェネレーター設定
@@ -53,14 +53,14 @@ tab_history: 履歴
 # スキャン
 scan_choose_image: 画像を選択
 scan_decoding: デコード中…
-scan_decode_error: QRコードが見つかりませんでした。より鮮明な画像をお試しください。
+scan_decode_error: QRコードが見つかりませんでした。より鮮明な画像をお試しください
 scan_copy_text: テキストをコピー
 scan_generate_qr: QRを生成
-scan_hint: QRコードを含むスクリーンショットや写真をアップロードして、その内容を読み取ります。
+scan_hint: QRコードを含むスクリーンショットや写真をアップロードして、その内容を読み取ります
 scan_from_page: 現在のページをデコード
 scan_scanning: ページをデコード中…
 scan_page_not_found: このページにQRコードが見つかりませんでした
-scan_page_no_access: このページはデコードできません。更新するか、通常のウェブページでお試しください。
+scan_page_no_access: このページはデコードできません。更新するか、通常のウェブページでお試しください
 
 # 履歴
 history_empty: まだQRコードが生成されていません
