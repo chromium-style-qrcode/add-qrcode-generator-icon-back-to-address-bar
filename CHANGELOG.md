@@ -1,3 +1,9 @@
+## [2.0.1](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/2.0.0...2.0.1) (2026-11-20)
+
+### Bug Fixes
+
+- **i18n:** localize the extension name and store short description across all 7 languages
+
 ## [1.6.0](https://github.com/chromium-style-qrcode/add-qrcode-generator-icon-back-to-address-bar/compare/1.5.0...1.6.0) (2026-02-07)
 
 ### Features

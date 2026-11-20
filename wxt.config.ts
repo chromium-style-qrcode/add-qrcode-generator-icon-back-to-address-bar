@@ -25,9 +25,8 @@ export default defineConfig({
       open_in_tab: true,
       page: 'configuration.html'
     },
-    name: 'Add QR Code Generator Icon Back To Address Bar',
-    description:
-      'An Extension To Add QR Code Generator Icon Back To Address Bar',
+    name: '__MSG_extName__',
+    description: '__MSG_extDescription__',
     commands: {
       [process.env.VITE_QRCODE_COMMAND_ID as keyof any]: {
         suggested_key: {

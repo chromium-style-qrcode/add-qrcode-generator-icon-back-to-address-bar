@@ -2,7 +2,7 @@
   "name": "add-qrcode-generator-icon-back-to-address-bar",
   "description": "Add QR Code Generator Icon Back To Address Bar",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "scripts": {
     "dev": "wxt",
